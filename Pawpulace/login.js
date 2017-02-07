@@ -16,25 +16,23 @@ var HeaderView = React.createClass({
                                    });
 
 var TokenView = React.createClass({
-
-                                  render: function() {
+                                  render (){
                                   return (
                                           <View style={styles.tokenContainer}>
-                                          <Text style={styles.label}>Username:</Text>
-                                          <Text style={styles.value}>{this.props.username}</Text>
-                                          <Text style={styles.label}>Email:</Text>
-                                          <Text style={styles.value}>{this.props.email}</Text>
-                                          <Text style={styles.label}>JWT:</Text>
-                                          <Text style={styles.value}>{this.props.jwt}</Text>
-                                          <Text style={styles.label}>Refresh Token:</Text>
-                                          <Text style={styles.value}>{this.props.refreshToken}</Text>
+                                            <Text style={styles.label}>Username:</Text>
+                                            <Text style={styles.value}>{this.props.username}</Text>
+                                            <Text style={styles.label}>Email:</Text>
+                                            <Text style={styles.value}>{this.props.email}</Text>
+                                            <Text style={styles.label}>JWT:</Text>
+                                            <Text style={styles.value}>{this.props.jwt}</Text>
+                                            <Text style={styles.label}>Refresh Token:</Text>
+                                            <Text style={styles.value}>{this.props.refreshToken}</Text>
                                           </View>
                                           );
-                                  }
-
+                                        }
                                   });
 
-var Pawpulace = React.createClass({
+var Login = React.createClass({
 
   render() {
     return (
@@ -45,52 +43,57 @@ var Pawpulace = React.createClass({
   }
 });
 
-var Pawpulace = React.createClass({
-                                     getInitialState: function() {
-                                     return {
-                                     logged: false,
-                                     };
-                                     },
-                                     render: function() {
-                                     if (this.state.logged) {
-                                     return (
-                                             <View style={styles.container}>
-                                             <HeaderView/>
-                                             <TokenView
-                                             style={styles.token}
-                                             username={this.state.profile.name}
-                                             email={this.state.profile.email}
-                                             jwt={this.state.token.idToken}
-                                             refreshToken={this.state.token.refreshToken}
-                                             />
-                                             <View style={styles.actionContainer}>
-                                             <TouchableHighlight style={styles.actionButton} onPress={this._onUserInfo}>
-                                             <Text style={styles.actionButtonText}>Greet</Text>
-                                             </TouchableHighlight>
-                                             <TouchableHighlight style={styles.actionButton} onPress={this._onRefresh}>
-                                             <Text style={styles.actionButtonText}>Refresh</Text>
-                                             </TouchableHighlight>
-                                             <TouchableHighlight style={styles.actionButton} onPress={this._onLogout}>
-                                             <Text style={styles.actionButtonText}>Logout</Text>
-                                             </TouchableHighlight>
-                                             </View>
-                                             </View>
-                                             );
-                                     }
-                                     return (
-                                             <View style={styles.container}>
-                                             <HeaderView/>
-                                             <Text style={styles.message}>
-                                             Please tap on 'Show Lock' to continue.
-                                             </Text>
-                                             <View style={styles.actionContainer}>
-                                             <TouchableHighlight style={styles.actionButton} onPress={this._onShowLock}>
-                                             <Text style={styles.actionButtonText}>Show Lock</Text>
-                                             </TouchableHighlight>
-                                             </View>
-                                             </View>
-                                             );
-                                     },
+var Login = React.createClass({
+                        getInitialState: function() {
+                          return {
+                              logged: false,
+                          };
+                        },
+                        render: function() {
+                          if (this.state.logged) {
+                            return (
+                              <View style={styles.container}>
+                              <HeaderView/>
+                              <TokenView
+                              style={styles.token}
+                              username={this.state.profile.name}
+                              email={this.state.profile.email}
+                              jwt={this.state.token.idToken}
+                              refreshToken={this.state.token.refreshToken}
+                              />
+                              <View style={styles.actionContainer}>
+                                <TouchableHighlight style={styles.actionButton} onPress={() => this._onBreederInfo()}>
+                                  <Text style={styles.actionButtonText}>Breeder</Text>
+                                </TouchableHighlight>
+                                <TouchableHighlight style={styles.actionButton} onPress={() => this._onPetParentInfo()}>
+                                  <Text style={styles.actionButtonText}>Pet Parent</Text>
+                                </TouchableHighlight>
+                              </View>
+                              <View style={styles.actionContainer}>
+                                <TouchableHighlight style={styles.actionButton} onPress={this._onUserInfo}>
+                                  <Text style={styles.actionButtonText}>Greet</Text>
+                                </TouchableHighlight>
+                                <TouchableHighlight style={styles.actionButton} onPress={this._onRefresh}>
+                                  <Text style={styles.actionButtonText}>Refresh</Text>
+                                </TouchableHighlight>
+                                <TouchableHighlight style={styles.actionButton} onPress={this._onLogout}>
+                                  <Text style={styles.actionButtonText}>Logout</Text>
+                                </TouchableHighlight>
+                              </View>
+                              </View>
+                            );
+                          }
+                          return (
+                              <View style={styles.container}>
+                                <HeaderView/>
+                                <View style={styles.actionContainer}>
+                                  <TouchableHighlight style={styles.actionButton} onPress={this._onShowLock}>
+                                    <Text style={styles.actionButtonText}>Sign Up/Login</Text>
+                                  </TouchableHighlight>
+                                </View>
+                              </View>
+                            );
+                          },
                                      _onShowLock: function() {
                                      lock.show({
                                                closable: true,
@@ -140,6 +143,16 @@ var Pawpulace = React.createClass({
                                                        )
                                            })
                                      .catch(error => console.log(error));
+                                     },
+                                     _onBreederInfo() {
+                                       this.props.navigator.push({
+                                         name: 'WelcomeBreeder',
+                                       })
+                                     },
+                                     _onPetParentInfo() {
+                                       this.props.navigator.push({
+                                         name: 'WelcomePetParent',
+                                       })
                                      },
                                      });
 
@@ -219,4 +232,4 @@ var styles = StyleSheet.create({
 
                                });
 
-module.exports = Pawpulace;
+module.exports = Login;
