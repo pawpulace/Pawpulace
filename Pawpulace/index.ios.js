@@ -7,7 +7,8 @@ import {
 } from 'react-native';
 
 import Login from './login';
-import WelcomeBreeder from './welcomeBreeder';
+/*import WelcomeBreeder from './welcomeBreeder';*/
+import HomePage from './src/HomePage';
 import WelcomePetParent from './welcomePetParent';
 
 export default class Pawpulace extends Component {
@@ -24,7 +25,7 @@ export default class Pawpulace extends Component {
         return <Login navigator={navigator} />
     }
     if(route.name == 'WelcomeBreeder') {
-        return <WelcomeBreeder navigator={navigator} />
+        return <HomePage navigator={navigator} />
     }
     if(route.name == 'WelcomePetParent') {
         return <WelcomePetParent navigator={navigator} />
