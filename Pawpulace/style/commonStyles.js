@@ -76,7 +76,6 @@ const mainStyle = {
   },
 };
 
-<<<<<<< HEAD
 const dropDownStyle = {
     container: {
     paddingHorizontal: 10,
@@ -114,17 +113,12 @@ const dropDownStyle = {
   }
 };
 
-=======
->>>>>>> c9f6c28... P : Breeder Registration Page
 const CommonStyles = NestedStyleSheet(StyleSheet,{
         ToolBarStyle: toolBarStyle,
         PageStyle: pageStyle,
         MainStyle: mainStyle,
         NavigationBarStyle: navigationBarStyle,
-<<<<<<< HEAD
         DropDownStyle: dropDownStyle
-=======
->>>>>>> c9f6c28... P : Breeder Registration Page
  });
 
 module.exports = CommonStyles;

@@ -30,7 +30,6 @@ import TextField from 'react-native-md-textinput';
 
 import {CustomButton,CommonNavigator, DropDown} from './util';
 
-<<<<<<< HEAD
 class BreederEndRegistration extends Component {
   constructor(props) {
     super(props);
@@ -131,46 +130,7 @@ class BreederPage3 extends Component {
     );
   }
 }
-=======
 
-
-
-var BreedTypeList = React.createClass ({
-  render(){
-    return(
-      <View>
-              {
-            list.map((item, index) => {
-              return (
-                <MenuOptions key={index} > 
-                  <Text>{item}</Text>
-                </MenuOptions>
-              )
-            })
-      }
-      </View>
-
-    )
-    }
-});
-
-
-const TopNavigation = () => (
-  <View style={styles.content}>
-
-          <Menu style={styles.dropdown} onSelect={(value) => this.setState({ dropdownSelection: value })}>
-            <MenuTrigger>
-              <Text>hello</Text>
-            </MenuTrigger>
-            
-            <MenuOptions optionsContainerStyle={styles.dropdownOptions}
-                         renderOptionsContainer={(options) => <ScrollView><Text>CHOOSE SOMETHING....</Text>{options}</ScrollView>}>
-              <BreedTypeList/>
-            </MenuOptions>
-          </Menu>
-        </View>
-);
->>>>>>> c9f6c28... P : Breeder Registration Page
 
 
 class BreedType extends Component {
@@ -178,7 +138,6 @@ class BreedType extends Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
       BreederName: props.BreederName,
       breedTypes: ['Labrador retriever', 'Golden Retriever' , 'Other'],
       years:0
@@ -218,15 +177,6 @@ class BreedType extends Component {
           </ScrollView>
           <CustomButton  navigator={this.props.navigator} name={this.props.name}  onPress={() => {this.onPressNext()}} label='Next'/>
        </View>
-=======
-      breedTypes: ['Labrador retriever', 'Golden Retriever' , 'Other']
-    }
-  }
-
-  render() {
-    return (
-      <DropDown dropdownSelection='BreedType'  dropdownlists={this.state.breedTypes} />
->>>>>>> c9f6c28... P : Breeder Registration Page
     );
   }
 }
@@ -256,63 +206,6 @@ class BreedType extends Component {
   }
 }
 */
-
-
-<<<<<<< HEAD
-=======
-const styles = StyleSheet.create({
-  topbar: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    backgroundColor: 'black',
-    paddingHorizontal: 5,
-    paddingVertical: 10
-  },
-  menuTrigger: {
-    flexDirection: 'row',
-    paddingHorizontal: 10
-  },
-  menuTriggerText: {
-    color: 'lightgrey',
-    fontWeight: '600',
-    fontSize: 20
-  },
-  disabled: {
-    color: '#ccc'
-  },
-  divider: {
-    marginVertical: 5,
-    marginHorizontal: 2,
-    borderBottomWidth: 1,
-    borderColor: '#ccc'
-  },
-  content: {
-    backgroundColor: 'white',
-    paddingHorizontal: 10,
-    paddingTop: 20,
-    paddingBottom: 30,
-    borderBottomWidth: 1,
-    borderColor: '#ccc'
-  },
-  contentText: {
-    fontSize: 18
-  },
-  dropdown: {
-    width: 300,
-    borderColor: '#999',
-    borderWidth: 1,
-    padding: 5
-  },
-  dropdownOptions: {
-    marginTop: 30,
-    borderColor: '#ccc',
-    borderWidth: 2,
-    width: 300,
-    height: 200
-  }
-});
->>>>>>> c9f6c28... P : Breeder Registration Page
-
 
 class BreederInformation extends React.Component {
 
@@ -363,16 +256,6 @@ class BreederInformation extends React.Component {
 
   onPressNext() {
       this.props.navigator.push({
-<<<<<<< HEAD
-=======
-        component: BreedType
-        
-      })
-  }
-
-  onPressNext() {
-      this.props.navigator.push({
->>>>>>> c9f6c28... P : Breeder Registration Page
         component: BreedType,
         name: 'Welcome ' + this.state.firstName,
         BreederName: this.state.firstName,

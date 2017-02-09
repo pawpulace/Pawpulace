@@ -7,12 +7,8 @@ import {
     Image,
     StyleSheet,
      ScrollView,
-<<<<<<< HEAD
     TouchableHighlight,
     TouchableWithoutFeedback
-=======
-    TouchableHighlight
->>>>>>> c9f6c28... P : Breeder Registration Page
 } from 'react-native';
 
 import AwesomeButton from 'react-native-awesome-button';
@@ -111,7 +107,6 @@ export class CustomButton extends React.Component {
 
 
 
-<<<<<<< HEAD
 /*
 const MenuOptions = React.createClass({
     displayName: 'MenuOptions',
@@ -139,13 +134,6 @@ const MenuOptions = React.createClass({
       );
     }
   });*/
-=======
-
-
-
-
->>>>>>> c9f6c28... P : Breeder Registration Page
-
 
 
 import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu';
@@ -153,16 +141,11 @@ export class DropDown extends React.Component {
 
     constructor(props) {
         super(props);
-<<<<<<< HEAD
         this.state = {
         message: 'Try clicking the top-right menus',
         firstMenuDisabled: false,
         dropdownSelectionText: props.dropdownSelection
         }
-=======
-
-      
->>>>>>> c9f6c28... P : Breeder Registration Page
     }
 
   render(){
@@ -170,7 +153,6 @@ export class DropDown extends React.Component {
         return(
             
                 <MenuContext style={{ flex: 1 }} ref="MenuContext">
-<<<<<<< HEAD
                  <View style={CommonStyle.DropDownStyle.content}>
                     <Menu style={CommonStyle.DropDownStyle.dropdown}  onSelect= {(value) => this.setState({ dropdownSelectionText: value })}>
                         <MenuTrigger>
@@ -191,30 +173,6 @@ export class DropDown extends React.Component {
                        </MenuOptions>
                     </Menu>
                   </View>
-=======
-                <View style={styles.content}>
-                    <Menu style={styles.dropdown} >
-                        <MenuTrigger>
-                          <Text>{this.props.dropdownSelection}</Text>
-                        </MenuTrigger>
-                        <MenuOptions optionsContainerStyle={styles.dropdownOptions}
-                                             renderOptionsContainer={(options) => <ScrollView><Text>Choose...</Text>{options}</ScrollView>}>
-                                  <View>
-                                  {
-                                    
-                                this.props.dropdownlists.map((item, index) => {
-                                  return (
-                                            <MenuOptions key={index} > 
-                                                <Text>{item}</Text>
-                                            </MenuOptions>
-                                  )
-                                })
-                                  }
-                              </View>
-                       </MenuOptions>
-                    </Menu>
-                                </View>
->>>>>>> c9f6c28... P : Breeder Registration Page
                 </MenuContext>
         )
     }
@@ -223,7 +181,7 @@ export class DropDown extends React.Component {
 
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
+
   content: {
     backgroundColor: 'white',
     paddingHorizontal: 10,
@@ -233,8 +191,6 @@ const styles = StyleSheet.create({
     borderColor: '#ccc'
   },
 
-=======
->>>>>>> c9f6c28... P : Breeder Registration Page
   container: {
     flex:1,
     height:50,
@@ -301,11 +257,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 2,
     width: 300,
-<<<<<<< HEAD
     height: 500
-=======
-    height: 200
->>>>>>> c9f6c28... P : Breeder Registration Page
   }
 })
 

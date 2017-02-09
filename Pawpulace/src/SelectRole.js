@@ -85,11 +85,7 @@ class BreederRegistration1 extends React.Component {
 class BreederRegistration extends React.Component {
     render() {
         return (
-<<<<<<< HEAD
             <BreederRegistrationPage navigator={this.props.navigator}/>
-=======
-            <BreederRegistration1 navigator={this.props.navigator}/> 
->>>>>>> c9f6c28... P : Breeder Registration Page
             /* <CommonNavigator component={BreederRegistration1} name='BreederRegistration1'/>*/
         );
     }
