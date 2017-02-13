@@ -1,5 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
+platform :ios, '8.0'
 
 target 'Pawpulace' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -20,3 +21,5 @@ pod 'Lock', '~> 1.26'
 pod 'Lock/TouchID'
 pod 'Lock/SMS'
 pod 'Lock/Email'
+pod 'RSKImageCropper'
+pod 'QBImagePickerController'

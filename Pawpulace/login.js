@@ -68,6 +68,9 @@ var Login = React.createClass({
                                 <TouchableHighlight style={styles.actionButton} onPress={() => this._onPetParentInfo()}>
                                   <Text style={styles.actionButtonText}>Pet Parent</Text>
                                 </TouchableHighlight>
+                                <TouchableHighlight style={styles.actionButton} onPress={() => this._onPuppyInfo()}>
+                                  <Text style={styles.actionButtonText}>Puppy</Text>
+                                </TouchableHighlight>
                               </View>
                               <View style={styles.actionContainer}>
                                 <TouchableHighlight style={styles.actionButton} onPress={this._onUserInfo}>
@@ -152,6 +155,11 @@ var Login = React.createClass({
                                      _onPetParentInfo() {
                                        this.props.navigator.push({
                                          name: 'WelcomePetParent',
+                                       })
+                                     },
+                                     _onPuppyInfo() {
+                                       this.props.navigator.push({
+                                         name: 'PuppyRegistration',
                                        })
                                      },
                                      });

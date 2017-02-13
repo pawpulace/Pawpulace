@@ -36,6 +36,8 @@ PODS:
   - Lock/WebView (1.28.1):
     - Lock/CoreUI
   - Masonry (0.6.4)
+  - QBImagePickerController (3.4.0)
+  - RSKImageCropper (1.5.2)
   - SimpleKeychain (0.7.0)
   - TouchIDAuth (0.2.0):
     - SimpleKeychain (~> 0.3)
@@ -45,14 +47,18 @@ DEPENDENCIES:
   - Lock/Email
   - Lock/SMS
   - Lock/TouchID
+  - QBImagePickerController
+  - RSKImageCropper
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Lock: 75874afed8380a46459dfb643cb93b3b6ffa59d9
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
+  RSKImageCropper: 27d0e7efa800b509720163c3561fe08a04853780
   SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
 
-PODFILE CHECKSUM: f7c9843655a8014e045b6b879df0c52d6f3be02f
+PODFILE CHECKSUM: 0b8a2c7f6e0f314892d2e064bf2e724f6422ebf7
 
 COCOAPODS: 1.1.1

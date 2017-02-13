@@ -19,10 +19,10 @@ const toolBarStyle = {
         backgroundColor:'#81c04d',
         paddingTop:30,
         paddingBottom:10,
-        flexDirection:'row'   
+        flexDirection:'row'
     },
     toolbarButton:{
-        width: 50,            
+        width: 50,
         color:'#fff',
         textAlign:'center'
     },
@@ -30,7 +30,7 @@ const toolBarStyle = {
         color:'#fff',
         textAlign:'center',
         fontWeight:'bold',
-        flex:1                
+        flex:1
     },
 };
 
@@ -66,7 +66,7 @@ const navigationBarStyle={
 const pageStyle = {
     content: {
         flex:1,
-        alignItems:'stretch' 
+        alignItems:'stretch'
     },
 };
 
@@ -82,7 +82,8 @@ const dropDownStyle = {
     paddingTop: 20,
     paddingBottom: 30,
     borderBottomWidth: 1,
-    borderColor: '#ccc'
+    borderColor: '#ccc',
+    height: 300,
     },
 
     content: {
@@ -109,7 +110,7 @@ const dropDownStyle = {
     borderColor: '#ccc',
     borderWidth: 2,
     width: 300,
-    height: 500
+    height: 200
   }
 };
 

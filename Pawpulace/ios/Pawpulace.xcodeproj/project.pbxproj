@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -30,6 +29,8 @@
 		A3AB5E0C472A494A8E5D810A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D262D14A7CD246988ED5DBA0 /* libc++.tbd */; };
 		C3720D716BA84F3B9C01C905 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8192CA76E52B42969FB79B1D /* libz.tbd */; };
 		DD00AC1FA096409747C4B5BD /* libPods-Pawpulace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF5C2AD8B934B309A041E8E1 /* libPods-Pawpulace.a */; };
+		9333A1FBB08D4F578ED44987 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8BF8711DF714F059FCFAFD1 /* libimageCropPicker.a */; };
+		D88616C682B14DFE92D7A317 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C896391986B454F8746F397 /* libRCTVideo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +267,10 @@
 		E152D0B83AB14C88B3BF570A /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
 		E766934568B8459CB9185161 /* A0RNLock.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = A0RNLock.xcodeproj; path = "../node_modules/react-native-lock/ios/A0RNLock.xcodeproj"; sourceTree = "<group>"; };
 		E9ED27002DF57F67A65CD448 /* Pods-PawpulaceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PawpulaceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PawpulaceTests/Pods-PawpulaceTests.release.xcconfig"; sourceTree = "<group>"; };
+		3C5ED102557A41678AF2CD4F /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; name = "imageCropPicker.xcodeproj"; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D8BF8711DF714F059FCFAFD1 /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		AC396A985B234D1AB1C907E5 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; name = "RCTVideo.xcodeproj"; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		5C896391986B454F8746F397 /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +303,8 @@
 				1543FBB536B140C5A142F92F /* libRealmReact.a in Frameworks */,
 				A3AB5E0C472A494A8E5D810A /* libc++.tbd in Frameworks */,
 				C3720D716BA84F3B9C01C905 /* libz.tbd in Frameworks */,
+				9333A1FBB08D4F578ED44987 /* libimageCropPicker.a in Frameworks */,
+				D88616C682B14DFE92D7A317 /* libRCTVideo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +473,8 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				E766934568B8459CB9185161 /* A0RNLock.xcodeproj */,
 				5F8FCB2BE1E64E10BC82DDA6 /* RealmReact.xcodeproj */,
+				3C5ED102557A41678AF2CD4F /* imageCropPicker.xcodeproj */,
+				AC396A985B234D1AB1C907E5 /* RCTVideo.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1026,6 +1035,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1048,6 +1059,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

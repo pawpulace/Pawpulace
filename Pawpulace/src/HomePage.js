@@ -22,7 +22,6 @@ export default class HomePage extends React.Component {
       render() {
             return (
                <View style= {CommonStyles.MainStyle.mainContainer}>
-                    
                     <View style={CommonStyles.ToolBarStyle.toolbar}>
                         <Text style={CommonStyles.ToolBarStyle.toolbarTitle}>Pawpulace</Text>
                     </View>
@@ -31,5 +30,3 @@ export default class HomePage extends React.Component {
     );
   }
 }
-
-AppRegistry.registerComponent('HomePage', () => HomePage);

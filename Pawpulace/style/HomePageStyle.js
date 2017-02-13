@@ -29,7 +29,7 @@ const pageStyle = {
         paddingTop:10,
         paddingBottom:20,
         paddingLeft:20,
-        paddingRight:20, 
+        paddingRight:20,
         borderRadius:10,
     },
 
@@ -39,6 +39,22 @@ const pageStyle = {
         textAlign:'center',
         fontSize:20,
         marginBottom:10
+    },
+    alignPuppyRegistration: {
+        width:windowDimension.width-20,
+        height:windowDimension.width-155,
+        backgroundColor:'white',
+        paddingTop:10,
+        paddingBottom:20,
+        paddingLeft:20,
+        paddingRight:20,
+        borderRadius:10,
+    },
+    containerPuppyRegistration: {
+        flex:1,
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'center',
     },
 
 };
