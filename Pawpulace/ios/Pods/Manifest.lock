@@ -14,6 +14,13 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - GoogleMaps (2.1.1):
+    - GoogleMaps/Maps (= 2.1.1)
+  - GoogleMaps/Base (2.1.1)
+  - GoogleMaps/Maps (2.1.1):
+    - GoogleMaps/Base
+  - GooglePlaces (2.1.1):
+    - GoogleMaps/Base (= 2.1.1)
   - Lock (1.28.1):
     - Lock/Core (= 1.28.1)
     - Lock/UI (= 1.28.1)
@@ -37,28 +44,76 @@ PODS:
     - Lock/CoreUI
   - Masonry (0.6.4)
   - QBImagePickerController (3.4.0)
+  - React/Core (0.40.0):
+    - React/cxxreact
+    - React/yoga
+  - React/cxxreact (0.40.0):
+    - React/jschelpers
+  - React/jschelpers (0.40.0)
+  - React/RCTActionSheet (0.40.0):
+    - React/Core
+  - React/RCTAnimation (0.40.0):
+    - React/Core
+  - React/RCTGeolocation (0.40.0):
+    - React/Core
+  - React/RCTImage (0.40.0):
+    - React/Core
+    - React/RCTNetwork
+  - React/RCTLinkingIOS (0.40.0):
+    - React/Core
+  - React/RCTNetwork (0.40.0):
+    - React/Core
+  - React/RCTSettings (0.40.0):
+    - React/Core
+  - React/RCTText (0.40.0):
+    - React/Core
+  - React/RCTVibration (0.40.0):
+    - React/Core
+  - React/RCTWebSocket (0.40.0):
+    - React/Core
+  - React/yoga (0.40.0)
   - RSKImageCropper (1.5.2)
   - SimpleKeychain (0.7.0)
   - TouchIDAuth (0.2.0):
     - SimpleKeychain (~> 0.3)
 
 DEPENDENCIES:
+  - GoogleMaps
+  - GooglePlaces
   - Lock (~> 1.26)
   - Lock/Email
   - Lock/SMS
   - Lock/TouchID
   - QBImagePickerController
+  - React/Core (from `../node_modules/react-native`)
+  - React/RCTActionSheet (from `../node_modules/react-native`)
+  - React/RCTAnimation (from `../node_modules/react-native`)
+  - React/RCTGeolocation (from `../node_modules/react-native`)
+  - React/RCTImage (from `../node_modules/react-native`)
+  - React/RCTLinkingIOS (from `../node_modules/react-native`)
+  - React/RCTNetwork (from `../node_modules/react-native`)
+  - React/RCTSettings (from `../node_modules/react-native`)
+  - React/RCTText (from `../node_modules/react-native`)
+  - React/RCTVibration (from `../node_modules/react-native`)
+  - React/RCTWebSocket (from `../node_modules/react-native`)
   - RSKImageCropper
+
+EXTERNAL SOURCES:
+  React:
+    :path: ../node_modules/react-native
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
+  GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
   Lock: 75874afed8380a46459dfb643cb93b3b6ffa59d9
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
+  React: 6dfb2f72edb1d74a800127ae157af038646673ce
   RSKImageCropper: 27d0e7efa800b509720163c3561fe08a04853780
   SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
 
-PODFILE CHECKSUM: 0b8a2c7f6e0f314892d2e064bf2e724f6422ebf7
+PODFILE CHECKSUM: dd681a5f64162a2620226124acdcf8fa992d7a90
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

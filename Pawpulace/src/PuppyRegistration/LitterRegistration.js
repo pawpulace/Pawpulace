@@ -172,9 +172,9 @@ class LitterInformation extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-        sire:' ',
-        dam:' ',
-        pupsAvailable:' ',
+        sire:'',
+        dam:'',
+         pupsAvailable:'',
       }
     }
 
@@ -212,7 +212,7 @@ class LitterInformation extends React.Component {
   }
 
   onPressNext() {
-      if(this.dam == null){
+      if(this.state.dam == ''){
         Alert.alert('Please fill in the sire info');
       }
       else{

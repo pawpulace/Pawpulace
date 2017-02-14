@@ -18,6 +18,9 @@ case "${TARGETED_DEVICE_FAMILY}" in
   2)
     TARGET_DEVICE_ARGS="--target-device ipad"
     ;;
+  3)
+    TARGET_DEVICE_ARGS="--target-device tv"
+    ;;
   *)
     TARGET_DEVICE_ARGS="--target-device mac"
     ;;
@@ -74,11 +77,15 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+  install_resource "GooglePlaces/Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/Lock/Auth0.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/QBImagePickerController/QBImagePicker.bundle"
   install_resource "RSKImageCropper/RSKImageCropper/RSKImageCropperStrings.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+  install_resource "GooglePlaces/Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/Lock/Auth0.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/QBImagePickerController/QBImagePicker.bundle"
   install_resource "RSKImageCropper/RSKImageCropper/RSKImageCropperStrings.bundle"

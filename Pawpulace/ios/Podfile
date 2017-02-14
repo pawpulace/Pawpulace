@@ -7,6 +7,31 @@ target 'Pawpulace' do
   # use_frameworks!
 
   # Pods for Pawpulace
+  pod 'React', path: '../node_modules/react-native', 
+  :subspecs => [
+     'Core',
+     'RCTActionSheet',
+    'RCTAnimation',
+    'RCTGeolocation',
+    'RCTImage',
+    'RCTLinkingIOS',
+    'RCTNetwork',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket'
+  ]
+
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  
+  # Auth0 Lock
+  pod 'Lock', '~> 1.26'
+pod 'Lock/TouchID'
+pod 'Lock/SMS'
+pod 'Lock/Email'
+pod 'RSKImageCropper'
+pod 'QBImagePickerController'
 
   target 'PawpulaceTests' do
     inherit! :search_paths
@@ -15,11 +40,6 @@ target 'Pawpulace' do
 
 end
 
-# Auth0 Lock
 
-pod 'Lock', '~> 1.26'
-pod 'Lock/TouchID'
-pod 'Lock/SMS'
-pod 'Lock/Email'
-pod 'RSKImageCropper'
-pod 'QBImagePickerController'
+
+
