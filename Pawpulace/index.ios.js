@@ -21,7 +21,7 @@ export default class Pawpulace extends Component {
   render(){
     return (
       <Navigator
-        initialRoute={{name: 'WelcomeBreeder'}}
+        initialRoute={{name: 'Login'}}
         renderScene={this.renderScene}
       />
     )
