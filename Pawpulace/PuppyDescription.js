@@ -46,16 +46,19 @@ class PuppyDescription extends Component {
    render() {
     return (
        <View style={BreederStyle.PageStyle.container}>
-        <TextInput style={{height: 100, borderColor:'blue', borderBottomColor: '#000000', borderBottomWidth: 1}}
-        autoFocus={true} placeholder=" Type your Summary(Optional)! "  multiline={true}  maxLength={600} numberOfLines = {4}
+      <TextInput style={{height: 100, borderColor:'blue', borderBottomColor: '#000000', borderBottomWidth: 1}} 
+         placeholder=" Type your Summary(Optional)! "  multiline={true}  maxLength={600} numberOfLines = {4} 
        onChangeText={(summary) => this.setState({summary})}
         value={this.state.summary==' '?'':this.state.summary}
         />
+       
 
+        
+        
         <Text style={{fontSize: 20, fontWeight: 'bold'}} >
           {this.state.titleText}
         </Text>
-        <Text numberOfLines={5}>
+        <Text >
           {this.state.bodyText}
         </Text>
         <TouchableOpacity onPress={this.onPressNext()} style={styles.button}>
