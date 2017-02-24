@@ -25,15 +25,19 @@ import {
   View
 } from 'react-native';
 
+import {Config} from 'react-native-config';
+
 const BreederStyle = require('../../style/BreederStyleSheet');
 const CommonStyles = require('../../style/commonStyles');
 
 import TextField from 'react-native-md-textinput';
-import Communications from 'react-native-communications';
-import SendSMS from 'react-native-sms';
+//import Communications from 'react-native-communications';
+//import SendSMS from 'react-native-sms';
 import {CustomButton,CommonNavigator, DropDown} from '../util';
 
 import BreederProfile from '../BreederProfile/BreederProfile';
+
+
 
 class BreederEndRegistration extends Component {
   constructor(props) {
@@ -44,6 +48,22 @@ class BreederEndRegistration extends Component {
     }
   }
 
+
+/*
+  handleAddItem() {
+    const name = Math.floor(Math.random() * 10);
+    Meteor.call('sendEmail', { name }, (err, res) => {
+        console.log('sendEmail', err, res);
+    });
+
+   
+    Meteor.call('Items.addOne', { name }, (err, res) => {
+    console.log('Items.addOne', err, res);
+    }); 
+  }
+  */
+
+/*
   someFunction() {
  
     SendSMS.send({
@@ -55,7 +75,7 @@ class BreederEndRegistration extends Component {
         console.log('SMS Callback: completed: ' + completed + ' cancelled: ' + cancelled + 'error: ' + error);
  
     });
-}
+}*/
 
  onPressNext() {
       this.props.navigator.push({
@@ -75,13 +95,13 @@ class BreederEndRegistration extends Component {
         <Text>
           {this.state.bodyText}
         </Text>
-        <TouchableOpacity onPress={this.someFunction)}>
-        
-            <Text >Send a text/iMessage</Text>
-        </TouchableOpacity>
          <CustomButton  navigator={this.props.navigator} onPress={() => {this.onPressNext()}} label='Next'/>
         </View>
         </View>
+        /*        <TouchableOpacity onPress={this.someFunction)}>
+        
+            <Text >Send a text/iMessage</Text>
+        </TouchableOpacity>
         /*
         <TouchableOpacity onPress={() => Communications.email(['pratheba@gmail.com'],null,null,'My Subject','My body text')}>
         
@@ -105,11 +125,31 @@ class BreederSummary extends Component {
     };
   }
 
-   onPressNext() {
-      this.props.navigator.push({
+  componentWillMount() {
+    //Meteor.connect(Config.SERVER_URL);  
+  }
+
+  async sendEmailAndTextConfirmation() {
+     /* try {
+        const email = await AsyncStorage.getItem('BreederEmail');
+        const phone = await AsyncStorage.getItem('BreederPhoneNumber');
+        if (email != null){
+          Meteor.call('sendEmail', email, 'Welcome to Pawpulace', 'Welcome to pawpualce', (err,res) => {
+          console.log('sendText', res);
+          });
+        },
+        if(phone != null) {
+          Meteor.call('sendText', phone, (err,res) => {
+          console.log('sendText', res);
+          });
+        }
+      } catch (error) {
+        // Error retrieving data
+      }*/
+
+     this.props.navigator.push({
         component: BreederEndRegistration,
        name : 'Welcome ' + this.state.BreederName,
-        
       })
   }
 
@@ -131,7 +171,7 @@ class BreederSummary extends Component {
           {this.state.bodyText}
         </Text>
         
-          <CustomButton  navigator={this.props.navigator} onPress={() => {this.onPressNext()}} label='Next'/>
+          <CustomButton  navigator={this.props.navigator} onPress={() => {this.sendEmailAndTextConfirmation()}} label='Next'/>
        </View>
     );
   }
@@ -217,7 +257,7 @@ class BreedType extends Component {
          <ScrollView style={{paddingTop:10, height:100}}>
           <TextField label={'Breeding experience in years'}  maxLength={2} onChangeText={(text)=> this.onChanged(text)} value={this.state.years==' '?'':this.state.years}  highlightColor={'#00BCD4'} />
           </ScrollView>
-          <CustomButton  navigator={this.props.navigator} name={this.props.name}  onPress={() => {this.onTest()}} label='test'/>
+          <CustomButton  navigator={this.props.navigator} name={this.props.name}  onPress={() => {this.onTest()}} label='Press this first to test asyncstorage'/>
           <CustomButton  navigator={this.props.navigator} name={this.props.name}  onPress={() => {this.onPressNext()}} label='Next'/>
        </View>
     );
@@ -309,6 +349,7 @@ class BreederInformation extends React.Component {
           await AsyncStorage.setItem('BreederFirstName', this.state.firstName);
           await AsyncStorage.setItem('BreederLastName', this.state.lastName);
           await AsyncStorage.setItem('BreederEmail', this.state.email);
+          await AsyncStorage.setItem('BreederPhoneNumber', this.state.phoneNumber);
           await AsyncStorage.setItem('BreederAddress', this.state.address);
         } catch (error) {
           this._appendMessage('AsyncStorage error: ' + error.message);

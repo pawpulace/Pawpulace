@@ -8,7 +8,7 @@ import {
 
 import Login from './login';
 /*import WelcomeBreeder from './welcomeBreeder';*/
-import HomePage from './src/HomePage';
+import HomePage from './src/BreederRegistration/HomePage';
 import WelcomePetParent from './welcomePetParent';
 import LitterRegistration from './LitterRegistration';
 import PuppyProfile from './PuppyProfile';
