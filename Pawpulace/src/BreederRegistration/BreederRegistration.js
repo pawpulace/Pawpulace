@@ -53,14 +53,7 @@ const BreederSchema = {
 }
 
 let realm = new Realm({
-  schema: [BreederSchema],
-  schemaVersion: 2,
-  migration: function(oldRealm, newRealm) {
-    // only apply this change if upgrading to schemaVersion 1
-    if (oldRealm.schemaVersion < 2) {
-      alert("This works");
-    }
-  }
+  schema: [BreederSchema]
 });
 
 let breederObject = realm.objects('Breeder');
