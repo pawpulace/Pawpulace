@@ -21,6 +21,7 @@
     "react-native-meteor": "git+https://github.com/inProgress-team/react-native-meteor.git",
     "react-native-multiple-styles": "^1.0.4",
     "react-native-radio-buttons": "^0.14.0",
+    "react-native-sms": "^1.4.1",
     "react-native-video": "^1.0.0",
     "react-redux": "^5.0.2",
     "realm": "^0.15.4",

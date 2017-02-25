@@ -37,7 +37,35 @@ import {CustomButton,CommonNavigator, DropDown} from '../util';
 
 import BreederProfile from '../BreederProfile/BreederProfile';
 
+const BreederSchema = {
+  name: 'Breeder',
+  primaryKey: 'emailAddress',
+  properties: {
+    emailAddress: {type: 'string', default: 'mihir'},
+    firstName:   {type: 'string'},
+    lastName: {type: 'string'},
+    phoneNumber: {type: 'string'},
+    houseAddress: {type: 'string'},
+    breedType: {type: 'string', default: ''},
+    breedingExperience: {type: 'int', default: 0},
+    breederSummary: {type: 'string', default: ''},
+  }
+}
 
+let realm = new Realm({
+  schema: [BreederSchema],
+  schemaVersion: 2,
+  migration: function(oldRealm, newRealm) {
+    // only apply this change if upgrading to schemaVersion 1
+    if (oldRealm.schemaVersion < 2) {
+      alert("This works");
+    }
+  }
+});
+
+let breederObject = realm.objects('Breeder');
+
+let currentVersion = Realm.schemaVersion(Realm.defaultPath);
 
 class BreederEndRegistration extends Component {
   constructor(props) {
@@ -56,24 +84,24 @@ class BreederEndRegistration extends Component {
         console.log('sendEmail', err, res);
     });
 
-   
+
     Meteor.call('Items.addOne', { name }, (err, res) => {
     console.log('Items.addOne', err, res);
-    }); 
+    });
   }
   */
 
 /*
   someFunction() {
- 
+
     SendSMS.send({
         body: 'The default body of the SMS!',
         recipients: ['6467251109'],
         successTypes: ['sent', 'queued']
     }, (completed, cancelled, error) => {
- 
+
         console.log('SMS Callback: completed: ' + completed + ' cancelled: ' + cancelled + 'error: ' + error);
- 
+
     });
 }*/
 
@@ -81,7 +109,7 @@ class BreederEndRegistration extends Component {
       this.props.navigator.push({
         component: BreederProfile,
        name : 'Welcome ' + this.state.BreederName,
-        
+
       })
   }
 
@@ -99,12 +127,12 @@ class BreederEndRegistration extends Component {
         </View>
         </View>
         /*        <TouchableOpacity onPress={this.someFunction)}>
-        
+
             <Text >Send a text/iMessage</Text>
         </TouchableOpacity>
         /*
         <TouchableOpacity onPress={() => Communications.email(['pratheba@gmail.com'],null,null,'My Subject','My body text')}>
-        
+
             <Text >Send a text/iMessage</Text>
         </TouchableOpacity>*/
         )
@@ -115,18 +143,20 @@ class BreederSummary extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      BreederName: props.BreederName,
+      breederEmail: props.BreederEmail,
       summary:' ',
       titleText: "Sample Summary",
-      bodyText: 'We are located in the heart of California’s Central Valley'+  
+      bodyText: 'We are located in the heart of California’s Central Valley'+
         'We are a small family operated kennel breeding family oriented dogs.'+
-        ' Being in a farming family with lots of acreage for a dog to run on, and a love for '+ 
+        ' Being in a farming family with lots of acreage for a dog to run on, and a love for '+
         'hunting at a young age, I was constantly on the lookout for the perfect companion' +
         'and working dog.  The Labrador Retriever was the answer..'
     };
   }
 
   componentWillMount() {
-    //Meteor.connect(Config.SERVER_URL);  
+    //Meteor.connect(Config.SERVER_URL);
   }
 
   async sendEmailAndTextConfirmation() {
@@ -147,9 +177,15 @@ class BreederSummary extends Component {
         // Error retrieving data
       }*/
 
+     realm.write(() => {
+       realm.create('Breeder', {email: this.state.breederEmail, breederSummary: this.state.summary}, true);
+     })
+
+     this.setState(summary: breederObject.breederSummary)
+
      this.props.navigator.push({
         component: BreederEndRegistration,
-       name : 'Welcome ' + this.state.BreederName,
+       name : 'Welcome ' + this.state.breederEmail,
       })
   }
 
@@ -158,19 +194,19 @@ class BreederSummary extends Component {
        <View style={BreederStyle.PageStyle.container}>
 
 
-        <TextInput style={{height: 100, borderColor:'blue', borderBottomColor: '#000000', borderBottomWidth: 1}} 
-         placeholder=" Type your Summary(Optional)! "  multiline={true}  maxLength={600} numberOfLines = {4} 
+        <TextInput style={{height: 100, borderColor:'blue', borderBottomColor: '#000000', borderBottomWidth: 1}}
+         placeholder=" Type your Summary(Optional)! "  multiline={true}  maxLength={600} numberOfLines = {4}
        onChangeText={(summary) => this.setState({summary})}
         value={this.state.summary==' '?'':this.state.summary}
         />
-        
+
         <Text style={{fontSize: 20, fontWeight: 'bold'}} >
           {this.state.titleText}
         </Text>
         <Text >
           {this.state.bodyText}
         </Text>
-        
+
           <CustomButton  navigator={this.props.navigator} onPress={() => {this.sendEmailAndTextConfirmation()}} label='Next'/>
        </View>
     );
@@ -182,17 +218,19 @@ class BreederPage3 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      BreederName: props.BreederName
+      BreederName: props.BreederName,
+      breederEmail: props.BreederEmail,
     }
   }
 
   onPressNext() {
       this.props.navigator.push({
         component: BreederSummary,
-       name : 'Welcome ' + this.state.BreederName,
+        name : 'Welcome ' + this.state.breederEmail,
         BreederName : this.state.BreederName,
         passProperty: {
-          BreederName: this.state.BreederName
+          BreederName: this.state.BreederName,
+          BreederEmail: this.state.breederEmail,
         }
       })
   }
@@ -215,6 +253,7 @@ class BreedType extends Component {
     super(props);
     this.state = {
       BreederName: props.BreederName,
+      breederEmail: props.breederEmail,
       ComponentName:null,
       breedTypes: ['Labrador retriever', 'Golden Retriever' , 'Other'],
       years:0
@@ -230,19 +269,26 @@ class BreedType extends Component {
         if ( numbers.indexOf(text[i]) > -1 ) {
             newText = newText + text[i];
         }
-    }   
+    }
    this.setState({years: newText})
   }
 
   onPressNext() {
-   
+    realm.write(() => {
+      realm.create('Breeder', {email: this.state.breederEmail, breedType: this.state.breedTypes,
+        breedingExperience: this.state.years}, true);
+    })
+
+    this.setState(breedTypes: breederObject.breedType)
+    this.setState(years: breederObject.breedingExperience)
+
       this.props.navigator.push({
-        
         component: this.state.ComponentName,
-        name : 'Welcome ' + this.state.BreederName,
+        name : 'Welcome ' + this.state.breederEmail,
         BreederName : this.state.BreederName,
         passProperty: {
-          BreederName: this.state.BreederName
+          BreederName: this.state.BreederName,
+          BreederEmail: this.state.breederEmail,
         }
       })
   }
@@ -264,31 +310,6 @@ class BreedType extends Component {
   }
 }
 
-/*
-class BreedType extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      breedTypes: ['Labrador retriever', 'Golden Retriever' , 'Other']
-    }
-
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows(['row 1', 'row 2']),
-    };
-  }
-  render() {
-    return (
-      <ListView
-        style={{flex:1, paddingTop: 100}}
-        dataSource={this.state.dataSource}
-        renderRow={(data) => <View><Text>{data}</Text></View>}
-      />
-    );
-  }
-}
-*/
 
 class BreederInformation extends React.Component {
 
@@ -315,7 +336,7 @@ class BreederInformation extends React.Component {
         if ( numbers.indexOf(text[i]) > -1 ) {
             newText = newText + text[i];
         }
-    }   
+    }
     this.setState({myNumber: newText})
   }
 
@@ -340,11 +361,12 @@ class BreederInformation extends React.Component {
 
 
   async onPressNext() {
-      if(this.state.firstName == '' || this.state.lastName=='' || this.state.phoneNumber =='' || this.state.phoneNumber.length < 10) {
+      if(this.state.firstName == '') {
         Alert.alert('Please fill in the required information');
         this.setState({labelColor: 'red'});
       }
       else{
+        /*
         try {
           await AsyncStorage.setItem('BreederFirstName', this.state.firstName);
           await AsyncStorage.setItem('BreederLastName', this.state.lastName);
@@ -354,13 +376,24 @@ class BreederInformation extends React.Component {
         } catch (error) {
           this._appendMessage('AsyncStorage error: ' + error.message);
         }
+        */
+      realm.write(() => {
+        realm.create('Breeder', {firstName: this.state.firstName, lastName: this.state.lastName, phoneNumber: this.state.phoneNumber,
+          emailAddres: this.state.email, houseAddress: this.state.address});
+      })
+
+      this.setState(firstName: breederObject.firstName)
+      this.setState(lastName: breederObject.lastName)
+      this.setState(email: breederObject.emailAddres)
+      this.setState(phoneNumber: breederObject.phoneNumber)
+      this.setState(address: breederObject.houseAddress)
 
       this.props.navigator.push({
         component: BreedType,
-        name: 'Welcome ' + this.state.firstName,
-        BreederName: this.state.firstName,
+        name: 'Fuck ' + currentVersion,
+        BreederEmail: this.state.email,
         passProperty: {
-          BreederName: this.state.firstName
+          BreederEmail: this.state.email,
         }
       })
   }
@@ -375,8 +408,8 @@ class BreederInformation extends React.Component {
               <TextField label={'Email'}  onChangeText={(email) => this.setState({email})} value={this.state.email==''?'':this.state.email} highlightColor={'#00BCD4'} keyboardType={'email-address'}  />
               <TextField label={'Phone Number'}
                                 onChangeText={(phoneNumber) => this.setState({phoneNumber})} value={this.state.phoneNumber==''?'':this.state.phoneNumber}
-                                highlightColor={'#00BCD4'} 
-                                keyboardType={'numeric'} 
+                                highlightColor={'#00BCD4'}
+                                keyboardType={'numeric'}
                                 maxLength={10}
                                 onSubmitEditing={Keyboard.dismiss}
                                 /*onChangeText = {(text) => {this.onChange(text)}}

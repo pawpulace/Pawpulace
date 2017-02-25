@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -33,6 +32,7 @@
 		C3720D716BA84F3B9C01C905 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8192CA76E52B42969FB79B1D /* libz.tbd */; };
 		D88616C682B14DFE92D7A317 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C896391986B454F8746F397 /* libRCTVideo.a */; };
 		DD00AC1FA096409747C4B5BD /* libPods-Pawpulace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF5C2AD8B934B309A041E8E1 /* libPods-Pawpulace.a */; };
+		6DBF370A472E4131A0A2CA4C /* libSendSMS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4EE1C556CFE4D658199B0CE /* libSendSMS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,6 +296,8 @@
 		E30C294F72EE4EF1864AD797 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
 		E766934568B8459CB9185161 /* A0RNLock.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = A0RNLock.xcodeproj; path = "../node_modules/react-native-lock/ios/A0RNLock.xcodeproj"; sourceTree = "<group>"; };
 		E9ED27002DF57F67A65CD448 /* Pods-PawpulaceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PawpulaceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PawpulaceTests/Pods-PawpulaceTests.release.xcconfig"; sourceTree = "<group>"; };
+		BCE27C9400E34CA1A7A28214 /* SendSMS.xcodeproj */ = {isa = PBXFileReference; name = "SendSMS.xcodeproj"; path = "../node_modules/react-native-sms/SendSMS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		F4EE1C556CFE4D658199B0CE /* libSendSMS.a */ = {isa = PBXFileReference; name = "libSendSMS.a"; path = "libSendSMS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +333,7 @@
 				9333A1FBB08D4F578ED44987 /* libimageCropPicker.a in Frameworks */,
 				D88616C682B14DFE92D7A317 /* libRCTVideo.a in Frameworks */,
 				9CB980C416284CBBBE5AE907 /* libReactNativeConfig.a in Frameworks */,
+				6DBF370A472E4131A0A2CA4C /* libSendSMS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +505,7 @@
 				3C5ED102557A41678AF2CD4F /* imageCropPicker.xcodeproj */,
 				AC396A985B234D1AB1C907E5 /* RCTVideo.xcodeproj */,
 				E30C294F72EE4EF1864AD797 /* ReactNativeConfig.xcodeproj */,
+				BCE27C9400E34CA1A7A28214 /* SendSMS.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1127,6 +1131,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1150,6 +1155,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
