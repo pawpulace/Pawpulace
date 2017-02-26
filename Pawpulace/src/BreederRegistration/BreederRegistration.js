@@ -29,6 +29,7 @@ import {Config} from 'react-native-config';
 
 const BreederStyle = require('../../style/BreederStyleSheet');
 const CommonStyles = require('../../style/commonStyles');
+const Realm = require('realm');
 
 import TextField from 'react-native-md-textinput';
 //import Communications from 'react-native-communications';
@@ -41,11 +42,11 @@ const BreederSchema = {
   name: 'Breeder',
   primaryKey: 'emailAddress',
   properties: {
-    emailAddress: {type: 'string', default: 'mihir'},
-    firstName:   {type: 'string'},
-    lastName: {type: 'string'},
-    phoneNumber: {type: 'string'},
-    houseAddress: {type: 'string'},
+    emailAddress: {type: 'string', default: 'm'},
+    firstName:   {type: 'string', default: ''},
+    lastName: {type: 'string', default: ''},
+    phoneNumber: {type: 'string', default: ''},
+    houseAddress: {type: 'string', default: ''},
     breedType: {type: 'string', default: ''},
     breedingExperience: {type: 'int', default: 0},
     breederSummary: {type: 'string', default: ''},
@@ -53,12 +54,13 @@ const BreederSchema = {
 }
 
 let realm = new Realm({
-  schema: [BreederSchema]
-});
+  schema: [BreederSchema],
+})
 
 let breederObject = realm.objects('Breeder');
 
 let currentVersion = Realm.schemaVersion(Realm.defaultPath);
+
 
 class BreederEndRegistration extends Component {
   constructor(props) {
@@ -137,7 +139,7 @@ class BreederSummary extends Component {
     super(props);
     this.state = {
       BreederName: props.BreederName,
-      breederEmail: props.BreederEmail,
+      email: props.BreederEmail,
       summary:' ',
       titleText: "Sample Summary",
       bodyText: 'We are located in the heart of California’s Central Valley'+
@@ -150,6 +152,17 @@ class BreederSummary extends Component {
 
   componentWillMount() {
     //Meteor.connect(Config.SERVER_URL);
+  }
+
+  componentWillUnmount () {
+   /* this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();*/
+    realm.write(() => {
+      let breederInfo = realm.create('Breeder', {emailAddres: this.state.email, breederSummary: this.state.summary}, true);
+        this.setState({
+          summary: breederObject.breedType,
+        })
+    })
   }
 
   async sendEmailAndTextConfirmation() {
@@ -170,15 +183,9 @@ class BreederSummary extends Component {
         // Error retrieving data
       }*/
 
-     realm.write(() => {
-       realm.create('Breeder', {email: this.state.breederEmail, breederSummary: this.state.summary}, true);
-     })
-
-     this.setState(summary: breederObject.breederSummary)
-
      this.props.navigator.push({
         component: BreederEndRegistration,
-       name : 'Welcome ' + this.state.breederEmail,
+       name : 'Welcome ' + this.state.email,
       })
   }
 
@@ -212,18 +219,19 @@ class BreederPage3 extends Component {
     super(props);
     this.state = {
       BreederName: props.BreederName,
-      breederEmail: props.BreederEmail,
+      email: props.BreederEmail,
     }
   }
 
   onPressNext() {
       this.props.navigator.push({
         component: BreederSummary,
-        name : 'Welcome ' + this.state.breederEmail,
+        name : 'Welcome ' + this.state.email + realm.objects('Breeder').length,
         BreederName : this.state.BreederName,
+        BreederEmail: this.state.email,
         passProperty: {
           BreederName: this.state.BreederName,
-          BreederEmail: this.state.breederEmail,
+          BreederEmail: this.state.email,
         }
       })
   }
@@ -246,10 +254,10 @@ class BreedType extends Component {
     super(props);
     this.state = {
       BreederName: props.BreederName,
-      breederEmail: props.breederEmail,
+      email: props.BreederEmail,
       ComponentName:null,
       breedTypes: ['Labrador retriever', 'Golden Retriever' , 'Other'],
-      years:0
+      years: 0,
     }
   }
 
@@ -266,22 +274,29 @@ class BreedType extends Component {
    this.setState({years: newText})
   }
 
-  onPressNext() {
+  componentWillUnmount () {
+   /* this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();*/
     realm.write(() => {
-      realm.create('Breeder', {email: this.state.breederEmail, breedType: this.state.breedTypes,
+      let breederInfo = realm.create('Breeder', {emailAddres: this.state.breederEmail, breedType: this.state.breedTypes,
         breedingExperience: this.state.years}, true);
+        this.setState({
+          breedTypes: breederObject.breedType,
+          years: breederObject.breedingExperience,
+        })
     })
+  }
 
-    this.setState(breedTypes: breederObject.breedType)
-    this.setState(years: breederObject.breedingExperience)
+  onPressNext() {
 
       this.props.navigator.push({
-        component: this.state.ComponentName,
-        name : 'Welcome ' + this.state.breederEmail,
+        component: BreederPage3,
+        name : 'You ' + this.state.email,
         BreederName : this.state.BreederName,
+        BreederEmail: this.state.email,
         passProperty: {
           BreederName: this.state.BreederName,
-          BreederEmail: this.state.breederEmail,
+          BreederEmail: this.state.email,
         }
       })
   }
@@ -295,6 +310,9 @@ class BreedType extends Component {
         <DropDown dropdownSelection='BreedType'  dropdownlists={this.state.breedTypes} />
          <ScrollView style={{paddingTop:10, height:100}}>
           <TextField label={'Breeding experience in years'}  maxLength={2} onChangeText={(text)=> this.onChanged(text)} value={this.state.years==' '?'':this.state.years}  highlightColor={'#00BCD4'} />
+          <Text>
+            Welcome to React Native! {realm.objects('Breeder').length}
+          </Text>
           </ScrollView>
           <CustomButton  navigator={this.props.navigator} name={this.props.name}  onPress={() => {this.onTest()}} label='Press this first to test asyncstorage'/>
           <CustomButton  navigator={this.props.navigator} name={this.props.name}  onPress={() => {this.onPressNext()}} label='Next'/>
@@ -337,6 +355,10 @@ class BreederInformation extends React.Component {
     /*this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
    */
+    realm.write(() => {
+      realm.create('Breeder', {emailAddres: this.state.email, firstName: this.state.firstName, lastName: this.state.lastName, phoneNumber: this.state.phoneNumber,
+        houseAddress: this.state.address});
+    })
    }
 
   componentWillUnmount () {
@@ -352,45 +374,23 @@ class BreederInformation extends React.Component {
     alert('Keyboard Hidden');
   }
 
+  addItem() {
+    this.onPressNext();
+  }
 
-  async onPressNext() {
-      if(this.state.firstName == '') {
-        Alert.alert('Please fill in the required information');
-        this.setState({labelColor: 'red'});
-      }
-      else{
-        /*
-        try {
-          await AsyncStorage.setItem('BreederFirstName', this.state.firstName);
-          await AsyncStorage.setItem('BreederLastName', this.state.lastName);
-          await AsyncStorage.setItem('BreederEmail', this.state.email);
-          await AsyncStorage.setItem('BreederPhoneNumber', this.state.phoneNumber);
-          await AsyncStorage.setItem('BreederAddress', this.state.address);
-        } catch (error) {
-          this._appendMessage('AsyncStorage error: ' + error.message);
-        }
-        */
-      realm.write(() => {
-        realm.create('Breeder', {firstName: this.state.firstName, lastName: this.state.lastName, phoneNumber: this.state.phoneNumber,
-          emailAddres: this.state.email, houseAddress: this.state.address});
-      })
 
-      this.setState(firstName: breederObject.firstName)
-      this.setState(lastName: breederObject.lastName)
-      this.setState(email: breederObject.emailAddres)
-      this.setState(phoneNumber: breederObject.phoneNumber)
-      this.setState(address: breederObject.houseAddress)
-
+   onPressNext() {
       this.props.navigator.push({
         component: BreedType,
-        name: 'Fuck ' + currentVersion,
+        name: 'Fuck ' + this.state.email,
+        BreederName: this.state.firstName,
         BreederEmail: this.state.email,
         passProperty: {
+          BreederName: this.state.first,
           BreederEmail: this.state.email,
         }
       })
-  }
-}
+   }
 
   render() {
   return(
@@ -410,7 +410,7 @@ class BreederInformation extends React.Component {
                                 />
               <TextField label={'Address'} onChangeText={(address) => this.setState({address})} value={this.state.address==''?'':this.state.address}  highlightColor={'#00BCD4'} multiline={true}/>
             </ScrollView>
-            <CustomButton  navigator={this.props.navigator} onPress={() => {this.onPressNext()}} label='Next'/>
+            <CustomButton  navigator={this.props.navigator} onPress={() => {this.addItem()}} label='Next'/>
             </View>
           )
       }
