@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -23,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1543FBB536B140C5A142F92F /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E152D0B83AB14C88B3BF570A /* libRealmReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		6DBF370A472E4131A0A2CA4C /* libSendSMS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4EE1C556CFE4D658199B0CE /* libSendSMS.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		9333A1FBB08D4F578ED44987 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8BF8711DF714F059FCFAFD1 /* libimageCropPicker.a */; };
 		9A7BCAC1C25C0E1E464600F1 /* libPods-PawpulaceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E3C811FB2C5F1CE5B00A6C /* libPods-PawpulaceTests.a */; };
@@ -32,7 +34,6 @@
 		C3720D716BA84F3B9C01C905 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8192CA76E52B42969FB79B1D /* libz.tbd */; };
 		D88616C682B14DFE92D7A317 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C896391986B454F8746F397 /* libRCTVideo.a */; };
 		DD00AC1FA096409747C4B5BD /* libPods-Pawpulace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF5C2AD8B934B309A041E8E1 /* libPods-Pawpulace.a */; };
-		6DBF370A472E4131A0A2CA4C /* libSendSMS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4EE1C556CFE4D658199B0CE /* libSendSMS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +226,13 @@
 			remoteGlobalIDString = F60690131CA2766F0003FB26;
 			remoteInfo = RealmReact;
 		};
+		CF6103711E656B1C00451FCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCE27C9400E34CA1A7A28214 /* SendSMS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 95688E1A1D38251600F72D63;
+			remoteInfo = SendSMS;
+		};
 		CF794A171E388B26003DA40B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E766934568B8459CB9185161 /* A0RNLock.xcodeproj */;
@@ -289,6 +297,7 @@
 		A9DCFD58EC215CD9EC1925C7 /* Pods-Pawpulace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpulace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pawpulace/Pods-Pawpulace.debug.xcconfig"; sourceTree = "<group>"; };
 		AAF498000BD189A979949003 /* Pods-PawpulaceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PawpulaceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PawpulaceTests/Pods-PawpulaceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AC396A985B234D1AB1C907E5 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		BCE27C9400E34CA1A7A28214 /* SendSMS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SendSMS.xcodeproj; path = "../node_modules/react-native-sms/SendSMS.xcodeproj"; sourceTree = "<group>"; };
 		CF5C2AD8B934B309A041E8E1 /* libPods-Pawpulace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pawpulace.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D262D14A7CD246988ED5DBA0 /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		D8BF8711DF714F059FCFAFD1 /* libimageCropPicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libimageCropPicker.a; sourceTree = "<group>"; };
@@ -296,8 +305,7 @@
 		E30C294F72EE4EF1864AD797 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
 		E766934568B8459CB9185161 /* A0RNLock.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = A0RNLock.xcodeproj; path = "../node_modules/react-native-lock/ios/A0RNLock.xcodeproj"; sourceTree = "<group>"; };
 		E9ED27002DF57F67A65CD448 /* Pods-PawpulaceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PawpulaceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PawpulaceTests/Pods-PawpulaceTests.release.xcconfig"; sourceTree = "<group>"; };
-		BCE27C9400E34CA1A7A28214 /* SendSMS.xcodeproj */ = {isa = PBXFileReference; name = "SendSMS.xcodeproj"; path = "../node_modules/react-native-sms/SendSMS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		F4EE1C556CFE4D658199B0CE /* libSendSMS.a */ = {isa = PBXFileReference; name = "libSendSMS.a"; path = "libSendSMS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		F4EE1C556CFE4D658199B0CE /* libSendSMS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSendSMS.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -550,6 +558,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CF6103501E656B1C00451FCB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF6103721E656B1C00451FCB /* libSendSMS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CF794A141E388B26003DA40B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,6 +737,10 @@
 				{
 					ProductGroup = CF3AE0151E42ABA1004D8B80 /* Products */;
 					ProjectRef = 5F8FCB2BE1E64E10BC82DDA6 /* RealmReact.xcodeproj */;
+				},
+				{
+					ProductGroup = CF6103501E656B1C00451FCB /* Products */;
+					ProjectRef = BCE27C9400E34CA1A7A28214 /* SendSMS.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -912,6 +932,13 @@
 			fileType = archive.ar;
 			path = libRealmReact.a;
 			remoteRef = CF3AE0321E42ABA1004D8B80 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CF6103721E656B1C00451FCB /* libSendSMS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSendSMS.a;
+			remoteRef = CF6103711E656B1C00451FCB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CF794A181E388B26003DA40B /* libA0RNLock.a */ = {

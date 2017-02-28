@@ -30,23 +30,9 @@ import TextField from 'react-native-md-textinput';
 import DatePicker from 'react-native-datepicker';
 import Video from 'react-native-video';
 var ImagePicker = NativeModules.ImageCropPicker;
-import UploadPicture from '../../uploadPic';
+import UploadPicture from '../Common/UploadPicComponent';
 
 import {CustomButton,CommonNavigator, DropDown} from '../util';
-
-class UploadPupPicture extends React.Component{
-  constructor(props){
-    super(props);
-    this.state= {
-      nextScene: props.nextScene,
-    }
-  }
-  render(){
-    return (
-      <UploadPicture navigator={this.props.navigator} compoName={this.state.nextScene}/>
-    )
-  }
-}
 
 class PuppySummary extends Component {
   constructor(props) {
@@ -64,9 +50,10 @@ class PuppySummary extends Component {
 
    onPressNext() {
       this.props.navigator.push({
-        component: UploadPupPicture,
+        component: UploadPicture,
         passProperty: {
           nextScene: 'PuppyEndRegistration',
+          routedFrom: 'PuppyRegistration',
         }
       })
   }
@@ -85,7 +72,7 @@ class PuppySummary extends Component {
         <Text style={{fontSize: 20, fontWeight: 'bold'}}>
           {this.state.titleText}
         </Text>
-        <Text numberOfLines={5}>
+        <Text numberOfLines={5} style={{marginBottom: 20}}>
           {this.state.bodyText}
         </Text>
 
@@ -212,15 +199,12 @@ class LitterInformation extends React.Component {
   }
 
   onPressNext() {
-      if(this.dam == null){
-        Alert.alert('Please fill in the sire info');
-      }
-      else{
+
         this.props.navigator.push({
           component: PuppyDetails,
           name: 'Puppy Details',
         })
-      }
+
   }
 
   render() {

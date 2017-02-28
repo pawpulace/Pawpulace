@@ -68,7 +68,7 @@ class LitterView extends Component {
             <View style={HomePageStyle.PageStyle.containerPuppyRegistration}>
                         <View style={HomePageStyle.PageStyle.alignPuppyRegistration}>
                             <View style={{flex:1 , flexDirection:'column'}}>
-                              <VerticalSelect verticalSelection='Do you have puppies?' verticalSelectionText={this.state.litterAvailable} />
+                              <VerticalSelect verticalSelection='Do you a litter available?' verticalSelectionText={this.state.litterAvailable} />
                             </View>
                         </View>
                         <CustomButton  navigator={this.props.navigator} name={this.props.name}  onPress={() => {this.onPressNext()}} label='Next'/>

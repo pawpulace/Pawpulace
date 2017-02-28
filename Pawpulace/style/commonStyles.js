@@ -111,6 +111,38 @@ const dropDownStyle = {
     borderWidth: 2,
     width: 300,
     height: 200
+  },
+
+  datePicker: {
+    marginLeft: 15,
+    marginBottom: 30,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    width: 300,
+  },
+};
+
+const buttonStyle = {
+  container: {
+    padding:10,
+    width: 120,
+    height:40,
+    overflow:'hidden',
+    borderRadius:4,
+    backgroundColor: 'dodgerblue',
+    fontSize: 18,
+    color: 'white',
+  },
+
+  largeContainer: {
+    padding:10,
+    height:40,
+    overflow:'hidden',
+    borderRadius:4,
+    backgroundColor: 'dodgerblue',
+    fontSize: 18,
+    color: 'white',
+    marginBottom: 15,
   }
 };
 
@@ -119,7 +151,8 @@ const CommonStyles = NestedStyleSheet(StyleSheet,{
         PageStyle: pageStyle,
         MainStyle: mainStyle,
         NavigationBarStyle: navigationBarStyle,
-        DropDownStyle: dropDownStyle
+        DropDownStyle: dropDownStyle,
+        ButtonStyle: buttonStyle,
  });
 
 module.exports = CommonStyles;

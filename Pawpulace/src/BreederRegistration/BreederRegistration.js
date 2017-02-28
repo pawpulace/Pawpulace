@@ -27,9 +27,10 @@ const Realm = require('realm');
 import TextField from 'react-native-md-textinput';
 //import Communications from 'react-native-communications';
 //import SendSMS from 'react-native-sms';
-import {CustomButton,CommonNavigator, DropDown} from '../util';
-
+import {CustomButton,CommonNavigator, DropDown, CustomDatePicker} from '../util';
 import BreederProfile from '../BreederProfile/BreederProfile';
+import UploadPicture from '../Common/UploadPicComponent';
+
 
 class BreederSchema{}
 BreederSchema.schema = {
@@ -94,21 +95,23 @@ class BreederEndRegistration extends Component {
 
  onPressNext() {
    let breederObject = realm.objectForPrimaryKey(BreederSchema, this.state.email);
-    console.log('Final Final Summary: ' + breederObject.breederSummary);
     this.props.navigator.push({
-      component: BreederProfile,
-      name : 'Welcome ' + this.state.BreederName,
+      component: UploadPicture,
+      name : 'Please upload a profile picture',
+      passProperty: {
+        routedFrom: 'BreederRegistration',
+      }
     })
   }
 
   render() {
   return(
-    <View style={BreederStyle.PageStyle.container}>
+    <View style={BreederStyle.TextStyle.container}>
       <View style={{padding: 10}}>
-        <Text style={{fontSize: 20, fontWeight: 'bold'}} >
+        <Text style={BreederStyle.TextStyle.titleText} >
           {this.state.thankyouText}
         </Text>
-        <Text>
+        <Text style={BreederStyle.TextStyle.bodyText}>
           {this.state.bodyText}
         </Text>
          <CustomButton  navigator={this.props.navigator} onPress={() => {this.onPressNext()}} label='Next'/>
@@ -212,6 +215,10 @@ class BreederPage3 extends Component {
     this.state = {
       BreederName: props.BreederName,
       email: props.BreederEmail,
+      date1: '',
+      date2: '',
+      date3: '',
+      titleText: 'Please select 3 dates for in call screening',
     }
   }
 
@@ -223,11 +230,13 @@ class BreederPage3 extends Component {
     this.props.navigator.push({
       component: BreederSummary,
       name : 'Welcome ' + this.state.email,
-      BreederName : this.state.BreederName,
+      BreederName : this.state.date1,
       BreederEmail: this.state.email,
+      BreederDate: this.state.date1,
       passProperty: {
         BreederName: this.state.BreederName,
         BreederEmail: this.state.email,
+        BreederDate: this.state.date1,
       }
     })
   }
@@ -235,6 +244,12 @@ class BreederPage3 extends Component {
   render() {
     return (
       <View style={BreederStyle.PageStyle.container}>
+        <Text style={{fontSize: 16, fontWeight: '500', marginBottom: 30}} >
+          {this.state.titleText}
+        </Text>
+        <CustomDatePicker date={this.state.date1} onDateChange={(date) => {this.setState({date1})}} />
+        <CustomDatePicker onDateChange={(date2) => {this.setState({date2: date2})}} value={this.state.date2==' '?'':this.state.date2}/>
+        <CustomDatePicker onDateChange={(date3) => {this.setState({date3: date3})}} value={this.state.date3==' '?'':this.state.date3}/>
         <CustomButton  navigator={this.props.navigator} onPress={() => {this.onAddItem()}} label='Next'/>
       </View>
     );
@@ -345,38 +360,53 @@ class BreederInformation extends React.Component {
   }
 
   onAddItem() {
-    realm.write(() => {
-      realm.create(BreederSchema, {
-        emailAddress: this.state.email,
-        firstName:   this.state.firstName,
-        lastName: this.state.lastName,
-        phoneNumber: this.state.phoneNumber,
-        houseAddress: this.state.address,
-        breedType:'Lab',
-        breedingExperience: '0',
-        breederSummary: '',
-      },true);
-    })
-    this.onPressNext();
+    //if(this.validateEmail(this.state.email) && this.dataValidation) {
+      realm.write(() => {
+        realm.create(BreederSchema, {
+          emailAddress: this.state.email,
+          firstName:   this.state.firstName,
+          lastName: this.state.lastName,
+          phoneNumber: this.state.phoneNumber,
+          houseAddress: this.state.address,
+          breedType:'Lab',
+          breedingExperience: '0',
+          breederSummary: '',
+        },true);
+      })
+      this.onPressNext();
+    //}
   }
 
-  async onPressNext() {
+  validateEmail (email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email)) {
+      Alert.alert('Please fill in the correct email');
+      this.setState({labelColor: 'red'});
+      return false;
+    }
+    return true;
+  }
+
+  dataValidation (){
     if(this.state.firstName == '' || this.state.lastName=='' || this.state.phoneNumber =='' || this.state.phoneNumber.length < 10) {
       Alert.alert('Please fill in the required information');
       this.setState({labelColor: 'red'});
+      return false;
     }
-    else{
-      this.props.navigator.push({
-        component: BreedType,
-        name: 'Welcome ' + this.state.firstName,
+    return true;
+  }
+
+  async onPressNext() {
+    this.props.navigator.push({
+      component: BreedType,
+      name: 'Welcome ' + this.state.firstName,
+      BreederName: this.state.firstName,
+      BreederEmail: this.state.email,
+      passProperty: {
         BreederName: this.state.firstName,
         BreederEmail: this.state.email,
-        passProperty: {
-          BreederName: this.state.firstName,
-          BreederEmail: this.state.email,
-        }
-      })
-    }
+      }
+    })
   }
 
   render() {

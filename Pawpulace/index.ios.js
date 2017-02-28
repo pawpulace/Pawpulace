@@ -12,8 +12,7 @@ import HomePage from './src/BreederRegistration/HomePage';
 import WelcomePetParent from './welcomePetParent';
 import LitterRegistration from './LitterRegistration';
 import PuppyProfile from './PuppyProfile';
-import UploadPicture from './uploadPic';
-import PuppyDescripton from './PuppyDescription';
+import UploadPicture from './src/Common/UploadPicComponent';
 import PuppyDisplay from './PuppyDisplay';
 import PuppyRegistration from './src/PuppyRegistration/PuppyRegistration';
 
@@ -38,6 +37,12 @@ export default class Pawpulace extends Component {
     }
     if(route.name == 'PuppyRegistration') {
         return <PuppyRegistration navigator={navigator} />
+    }
+    if(route.name == 'PuppyProfile') {
+        return <PuppyProfile navigator={navigator} />
+    }
+    if(route.name == 'UploadPicture') {
+        return <UploadPicture navigator={navigator} />
     }
   }
 }

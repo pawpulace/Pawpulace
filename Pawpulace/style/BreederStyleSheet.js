@@ -50,7 +50,20 @@ const textStyle = {
         marginTop: 30,
         marginLeft: 10,
         marginRight: 10,
-    },
+      },
+      titleText: {
+        fontSize: 18,
+        textAlign: 'center',
+        margin: 10,
+        fontWeight: '700',
+      },
+      bodyText: {
+        fontSize: 14,
+        textAlign: 'center',
+        margin: 10,
+        fontWeight: '400',
+        marginBottom: 30,
+      }
 };
 
 const imageStyle = {
