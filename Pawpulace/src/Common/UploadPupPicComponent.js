@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
   View, Text, StyleSheet, ScrollView, Alert,
   Image, TouchableOpacity, NativeModules, Dimensions,
-  Keyboard,
+  Keyboard,AsyncStorage,
 } from 'react-native';
 
 import Video from 'react-native-video';
@@ -12,8 +12,9 @@ var ImagePicker = NativeModules.ImageCropPicker;
 import TextField from 'react-native-md-textinput';
 import {CustomButton,CommonNavigator, DropDown, CustomLargeButton} from '../util';
 
-import SelectLitter from '../PuppyRegistration/SelectLitter';
+import SelectLitter from '../LitterCreation/SelectLitter';
 import SelectRole from '../BreederRegistration/SelectRole';
+import LitterConfirmation from '../PuppyRegistration/PuppyEndRegistration';
 
 const styles = StyleSheet.create({
   container: {
@@ -40,13 +41,30 @@ export default class UploadPicture extends React.Component {
     return Navigator.SceneConfigs.PushFromRight
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      routedFrom: props.RoutedFrom,
+      puppyName: props.PuppyName,
+    };
+  }
+
+  componentWillMount () {
+    this.props.navigator.push({
+      component: UploadPic,
+      passProperty: {
+        RoutedFrom: this.state.routedFrom,
+        PuppyName: this.state.puppyName,
+      }
+    })
+  }
+
   render() {
     return(
       <UploadPic  navigator={this.props.navigator} />
     )
   }
 }
-
 
 module.exports =  UploadPicture;
 
@@ -58,7 +76,9 @@ class UploadPic extends Component {
       image: null,
       images: null,
       titleText: 'Please upload a profile picture',
-      routedFrom: props.routedFrom,
+      routedFrom: props.RoutedFrom,
+      puppyName: props.PuppyName,
+      imageUri: '',
     };
   }
 
@@ -124,7 +144,8 @@ class UploadPic extends Component {
       console.log('received image', image);
       this.setState({
         image: {uri: image.path, width: image.width, height: image.height, mime: image.mime},
-        images: null
+        images: null,
+        imageUri: image.path,
       });
     }).catch(e => {
       console.log(e);
@@ -171,7 +192,7 @@ class UploadPic extends Component {
   }
 
   renderImage(image) {
-    return <Image style={{width: 350, height: 300, resizeMode: 'contain', marginTop: 30}} source={image} />
+    return <Image style={{width: 250, height: 200, resizeMode: 'contain', marginTop: 30}} source={image} />
   }
 
   renderAsset(image) {
@@ -182,15 +203,31 @@ class UploadPic extends Component {
     return this.renderImage(image);
   }
 
+  storeImageLocation() {
+    console.log('Upload Puppy name: ' + this.state.puppyName);
+    try {
+      AsyncStorage.setItem(this.state.puppyName, JSON.stringify(this.state.image));
+    }
+    catch (error) {
+      // Error saving data
+      console.log("oops something went wrong", error);
+    }
+
+  }
+
   onPressNext() {
-    if(this.state.routedFrom == 'PuppyRegistration') {
-      this.props.navigator.push({
-        component: SelectRole,
+    this.storeImageLocation();
+    if(this.state.routedFrom == 'puppy') {
+      this.props.navigator.push ({
+        component: LitterConfirmation,
+        passProperty: {
+          PuppyName: this.state.puppyName,
+        }
       })
     }
     else {
       this.props.navigator.push({
-        component: SelectLitter,
+        component: LitterConfirmation,
       })
     }
   }

@@ -132,6 +132,7 @@ const buttonStyle = {
     backgroundColor: 'dodgerblue',
     fontSize: 18,
     color: 'white',
+    marginBottom: 15,
   },
 
   largeContainer: {

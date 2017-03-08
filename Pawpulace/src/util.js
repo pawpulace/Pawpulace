@@ -135,29 +135,28 @@ export class DropDown extends React.Component {
   render(){
 
         return(
+          <MenuContext ref="MenuContext">
+           <View style={CommonStyle.DropDownStyle.content}>
+              <Menu style={CommonStyle.DropDownStyle.dropdown}  onSelect= {(value) => this.setState({ dropdownSelectionText: value })}>
+                  <MenuTrigger>
+                    <Text>{this.state.dropdownSelectionText}</Text>
+                  </MenuTrigger>
+                  <MenuOptions optionsContainerStyle={CommonStyle.DropDownStyle.dropdownOptions}
+                                       renderOptionsContainer={(options) => <ScrollView><Text>Choose...</Text>{options}</ScrollView>}>
+                       {
 
-                <MenuContext style={{ flex: 1 }} ref="MenuContext">
-                 <View style={CommonStyle.DropDownStyle.content}>
-                    <Menu style={CommonStyle.DropDownStyle.dropdown}  onSelect= {(value) => this.setState({ dropdownSelectionText: value })}>
-                        <MenuTrigger>
-                          <Text>{this.state.dropdownSelectionText}</Text>
-                        </MenuTrigger>
-                        <MenuOptions optionsContainerStyle={CommonStyle.DropDownStyle.dropdownOptions}
-                                             renderOptionsContainer={(options) => <ScrollView><Text>Choose...</Text>{options}</ScrollView>}>
-                             {
-
-                                this.props.dropdownlists.map((item, index) => {
-                                  return (
-                                            <MenuOption key={index} value={item}>
-                                                <Text>{item}</Text>
-                                            </MenuOption>
-                                  )
-                                  })
-                              }
-                       </MenuOptions>
-                    </Menu>
-                  </View>
-                </MenuContext>
+                          this.props.dropdownlists.map((item, index) => {
+                            return (
+                                      <MenuOption key={index} value={item}>
+                                          <Text>{item}</Text>
+                                      </MenuOption>
+                            )
+                            })
+                        }
+                 </MenuOptions>
+              </Menu>
+            </View>
+          </MenuContext>
         )
     }
 }

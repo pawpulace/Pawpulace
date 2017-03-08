@@ -44,37 +44,33 @@ export default class SelectLitter extends Component {
 module.exports = SelectLitter;
 
 class LitterView extends Component {
-   /*static propTypes = {
-      navigator: PropTypes.object.isRequired,
-      name: PropTypes.string.isRequired,
-    }*/
-    constructor(props) {
-      super(props);
-      this.state = {
-        litterAvailable: ['Yes', 'No' , 'Upcoming'],
-        selectedOption: props.checkListOption,
-        name: 'Test',
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      litterAvailable: ['Yes', 'No' , 'Upcoming'],
+      selectedOption: props.checkListOption,
+      name: 'Test',
     }
+  }
 
-    onPressNext(){
-        this.props.navigator.push({
-          component: LitterEntry,
-          name: 'Litter Information',
-        })
-    }
-    render() {
-        return (
-            <View style={HomePageStyle.PageStyle.containerPuppyRegistration}>
-                        <View style={HomePageStyle.PageStyle.alignPuppyRegistration}>
-                            <View style={{flex:1 , flexDirection:'column'}}>
-                              <VerticalSelect verticalSelection='Do you a litter available?' verticalSelectionText={this.state.litterAvailable} />
-                            </View>
-                        </View>
-                        <CustomButton  navigator={this.props.navigator} name={this.props.name}  onPress={() => {this.onPressNext()}} label='Next'/>
-            </View>
-        );
-    }
+  onPressNext(){
+    this.props.navigator.push({
+      component: LitterEntry,
+      name: 'Litter Information',
+    })
+  }
+  render() {
+    return (
+      <View style={HomePageStyle.PageStyle.containerPuppyRegistration}>
+        <View style={HomePageStyle.PageStyle.alignPuppyRegistration}>
+          <View style={{flex:1 , flexDirection:'column'}}>
+            <VerticalSelect verticalSelection='Do you a litter available?' verticalSelectionText={this.state.litterAvailable} />
+          </View>
+        </View>
+        <CustomButton  navigator={this.props.navigator} name={this.props.name}  onPress={() => {this.onPressNext()}} label='Next'/>
+      </View>
+    );
+  }
 }
 
 class LitterEntry extends React.Component {

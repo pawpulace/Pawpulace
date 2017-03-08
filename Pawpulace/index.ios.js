@@ -10,17 +10,17 @@ import Login from './login';
 /*import WelcomeBreeder from './welcomeBreeder';*/
 import HomePage from './src/BreederRegistration/HomePage';
 import WelcomePetParent from './welcomePetParent';
-import LitterRegistration from './LitterRegistration';
-import PuppyProfile from './PuppyProfile';
-import UploadPicture from './src/Common/UploadPicComponent';
+import LitterRegistration from './src/LitterCreation/LitterRegistration';
+import UploadPicture from './src/Common/UploadPupPicComponent';
 import PuppyDisplay from './PuppyDisplay';
-import PuppyRegistration from './src/PuppyRegistration/PuppyRegistration';
+import PuppyRegistration from './src/LitterCreation/PuppyRegistration';
+import SelectLitter from './src/LitterCreation/SelectLitter';
 
 export default class Pawpulace extends Component {
   render(){
     return (
       <Navigator
-        initialRoute={{name: 'WelcomeBreeder'}}
+        initialRoute={{name: 'PuppyRegistration'}}
         renderScene={this.renderScene}
       />
     )
@@ -38,11 +38,11 @@ export default class Pawpulace extends Component {
     if(route.name == 'PuppyRegistration') {
         return <PuppyRegistration navigator={navigator} />
     }
-    if(route.name == 'PuppyProfile') {
-        return <PuppyProfile navigator={navigator} />
-    }
     if(route.name == 'UploadPicture') {
         return <UploadPicture navigator={navigator} />
+    }
+    if(route.name == 'SelectLitter') {
+        return <SelectLitter navigator={navigator} />
     }
   }
 }

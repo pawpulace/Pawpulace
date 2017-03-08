@@ -29,7 +29,7 @@ import TextField from 'react-native-md-textinput';
 //import SendSMS from 'react-native-sms';
 import {CustomButton,CommonNavigator, DropDown, CustomDatePicker} from '../util';
 import BreederProfile from '../BreederProfile/BreederProfile';
-import UploadPicture from '../Common/UploadPicComponent';
+import UploadPicture from '../Common/UploadPupPicComponent';
 
 
 class BreederSchema{}
