@@ -141,12 +141,13 @@ class UploadPic extends Component {
       compressImageQuality: 0.5,
       compressVideoPreset: 'MediumQuality',
     }).then(image => {
-      console.log('received image', image);
+      console.log('received image', image.path);
       this.setState({
         image: {uri: image.path, width: image.width, height: image.height, mime: image.mime},
         images: null,
         imageUri: image.path,
       });
+      AsyncStorage.setItem(this.state.puppyName, JSON.stringify(image.path));
     }).catch(e => {
       console.log(e);
       Alert.alert(e.message ? e.message : e);
@@ -203,20 +204,15 @@ class UploadPic extends Component {
     return this.renderImage(image);
   }
 
-  storeImageLocation() {
-    console.log('Upload Puppy name: ' + this.state.puppyName);
-    try {
-      AsyncStorage.setItem(this.state.puppyName, JSON.stringify(this.state.image));
-    }
-    catch (error) {
-      // Error saving data
-      console.log("oops something went wrong", error);
-    }
-
+  storeImageLocation(key, value) {
+    value = JSON.stringify(value)
+    console.log('stringify : ' + value);
+    if (value) return AsyncStorage.setItem(key, value)
+    else console.log('not set, stringify failed:', key, value)
   }
 
   onPressNext() {
-    this.storeImageLocation();
+    //this.storeImageLocation(this.state.puppyName, this.state.image);
     if(this.state.routedFrom == 'puppy') {
       this.props.navigator.push ({
         component: LitterConfirmation,

@@ -7,7 +7,7 @@
 * to Pawpulace Incorporated. Dissemination of this information or reproduction of this material is
 * strictly forbidden unless prior written permission is obtained from Pawpulace.
 ****************************************************************************************/
-
+'use strict';
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -34,14 +34,16 @@ import TextField from 'react-native-md-textinput';
 import CreatePuppyProfile from '../PuppyRegistration/CreatePuppyProfile';
 
 import {CustomButton,CommonNavigator, DropDown, CustomDatePicker} from '../util';
+import realm from '../components/realm';
 
 class LitterInformation extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-        sire:' ',
-        dam:' ',
-        pupsAvailable:' ',
+        sire: '',
+        dam: '',
+        pupsAvailable: '',
+        breedType: '',
       }
     }
 
@@ -58,17 +60,6 @@ class LitterInformation extends React.Component {
     this.setState({myNumber: newText})
   }
 
-  componentWillMount () {
-    /*this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
-   */
-   }
-
-  componentWillUnmount () {
-   /* this.keyboardDidShowListener.remove();
-    this.keyboardDidHideListener.remove();*/
-  }
-
   _keyboardDidShow () {
     alert('Keyboard Shown');
   }
@@ -80,13 +71,30 @@ class LitterInformation extends React.Component {
   onPressNext() {
     this.props.navigator.push({
       component: CreatePuppyProfile,
+      name: 'Welcome ' + this.state.sire,
+      passProperty: {
+        Sireinfo: this.state.sire,
+      }
     })
+  }
+
+  onAddItem() {
+    realm.write(() => {
+      realm.create('Litter', {
+        sire: this.state.email,
+        dam:   this.state.firstName,
+        breedType: this.state.lastName,
+        pupsAvailable: this.state.pupsAvailable,
+      });
+    });
+    this.onPressNext();
   }
 
   render() {
   return(
      <View style = {BreederStyle.PageStyle.container}>
           <ScrollView contentContainerStyle={BreederStyle.PageStyle.container}>
+              <TextField label={'Breed Type'}  onChangeText={(breedType) => this.setState({breedType})} value={this.state.breedType==' '?'':this.state.breedType}  highlightColor={'#00BCD4'} />
               <TextField label={'Sire'}  onChangeText={(sire) => this.setState({sire})} value={this.state.sire==' '?'':this.state.sire}  highlightColor={'#00BCD4'} />
               <TextField label={'Dam'}  onChangeText={(dam) => this.setState({dam})} value={this.state.dam==' '?'':this.state.dam} highlightColor={'#00BCD4'} />
               <TextField label={'Number of Pups Available?'}
@@ -102,7 +110,7 @@ class LitterInformation extends React.Component {
                 Please enter the puppy profiles on the next page
               </Text>
             </ScrollView>
-            <CustomButton  navigator={this.props.navigator} onPress={() => {this.onPressNext()}} label='Next'/>
+            <CustomButton  navigator={this.props.navigator} onPress={() => {this.onAddItem()}} label='Next'/>
             </View>
           )
       }

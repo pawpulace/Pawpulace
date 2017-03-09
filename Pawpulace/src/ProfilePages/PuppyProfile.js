@@ -38,7 +38,7 @@ import CreatePuppyProfile from '../PuppyRegistration/CreatePuppyProfile';
 
 import {CustomButton,CommonNavigator, DropDown, CustomDatePicker} from '../util';
 
-export default class PuppyProfilePage extends Component {
+export default class PuppyProfilePage extends React.Component {
   renderScene(route, navigator) {
     return <route.component navigator={navigator} {...route.passProperty} />
   }
@@ -55,8 +55,6 @@ export default class PuppyProfilePage extends Component {
   }
 
   componentWillMount () {
-    //this._loadInitialState().done();
-    console.log('Final Puppy Name: ' + this.state.puppyName);
     this.props.navigator.push({
       component: PuppyPublicDisplay,
       passProperty: {
@@ -74,12 +72,12 @@ export default class PuppyProfilePage extends Component {
 
 module.exports = PuppyProfilePage;
 
-class PuppyPublicDisplay extends React.Component {
+class PuppyPublicDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
       puppyName: props.PuppyName,
-      image: props.ImageObject,
+      image: '',
       thankyouText: 'Coopers Profile',
     }
   }
@@ -92,18 +90,13 @@ class PuppyPublicDisplay extends React.Component {
    }
   }
 
-  componentWillMount () {
-    //console.log('Final Puppy Name: ' + this.state.puppyName);
-  }
-
   render() {
   return(
     <View style={BreederStyle.TextStyle.container}>
       <View style={{padding: 10}}>
         <Text style={BreederStyle.TextStyle.titleText} >
-        {this.state.thankyouText}
+        {this.state.puppyName}
         </Text>
-        <Image style={{width: 150, height: 100, resizeMode: 'contain', marginTop: 30}} source={this.state.image} />
         <CustomButton  navigator={this.props.navigator} onPress={() => {this.onPressNext()}} label='Next'/>
       </View>
     </View>

@@ -56,39 +56,18 @@ export default class LitterConfirmation extends React.Component {
   }
 
   componentWillMount () {
-    //this._loadInitialState().done();
-    console.log('Litter Confirmation: ' + this.state.puppyName);
     this.props.navigator.push({
-      PuppyName: this.state.puppyName,
+      component: PuppyEndRegistration,
+      passProperty: {
+        PuppyName: this.state.puppyName,
+      }
     })
-    console.log('completed');
   }
 
-  /*
-  _loadInitialState = async () => {
-    try {
-      var value = await AsyncStorage.getItem(this.state.puppyName);
-      if (value !== null){
-        this.setState({
-          image: JSON.parse(value),
-        });
-      }
-      else {
-        console.log('puppy name is: ' + value);
-      }
-    }
-    catch (error) {
-      console.log('Yeah error name is: ' + this.state.puppyName);
-    }
-  };
-  */
-
   render() {
-    return (
-      //<CommonNavigator component={PuppyEndRegistration} />
-      //<CommonNavigator component={PuppyEndRegistration} />
+    return(
       <PuppyEndRegistration  navigator={this.props.navigator} />
-    );
+    )
   }
 }
 
@@ -105,7 +84,6 @@ class PuppyEndRegistration extends Component {
   }
 
  onPressNext(text) {
-   console.log('Puppy End Registration: ' + this.state.puppyName);
    if(text == 'Add') {
      this.props.navigator.push ({
        component: CreatePuppyProfile,
