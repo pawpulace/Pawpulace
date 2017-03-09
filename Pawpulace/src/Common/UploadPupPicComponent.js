@@ -223,7 +223,7 @@ class UploadPic extends Component {
     }
     else {
       this.props.navigator.push({
-        component: LitterConfirmation,
+        component: SelectLitter,
       })
     }
   }

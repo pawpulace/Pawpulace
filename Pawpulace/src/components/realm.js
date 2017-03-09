@@ -7,10 +7,9 @@
 * to Pawpulace Incorporated. Dissemination of this information or reproduction of this material is
 * strictly forbidden unless prior written permission is obtained from Pawpulace.
 ****************************************************************************************/
-'use strict';
 import Realm from 'realm';
-
 //List of puppies to be added later
+
 class Litter extends Realm.Object {}
 Litter.schema = {
   name: 'Litter',
@@ -36,7 +35,22 @@ Puppy.schema = {
   },
 };
 
+class BreederSchema extends Realm.Object {}
+BreederSchema.schema = {
+  name: 'BreederSchema',
+  primaryKey: 'emailAddress',
+  properties: {
+    emailAddress: 'string',
+    firstName:   'string',
+    lastName: 'string',
+    phoneNumber: 'string',
+    houseAddress: 'string',
+    breedType: 'string',
+    breedingExperience: 'string',
+    breederSummary: 'string', // optional property
+  },
+};
 
 //Uncomment the next line to delete the schema
 //Realm.clearTestState();
-export default new Realm({schema: [Litter, Puppy]});
+export default new Realm({schema: [Litter, Puppy, BreederSchema]});

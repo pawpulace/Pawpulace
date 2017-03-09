@@ -7,7 +7,6 @@
 * to Pawpulace Incorporated. Dissemination of this information or reproduction of this material is
 * strictly forbidden unless prior written permission is obtained from Pawpulace.
 ****************************************************************************************/
-'use strict';
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -34,9 +33,9 @@ import TextField from 'react-native-md-textinput';
 import CreatePuppyProfile from '../PuppyRegistration/CreatePuppyProfile';
 
 import {CustomButton,CommonNavigator, DropDown, CustomDatePicker} from '../util';
-import realm from '../components/realm';
+import Realm from '../components/realm';
 
-class LitterInformation extends React.Component {
+class LitterInformation extends Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -79,12 +78,13 @@ class LitterInformation extends React.Component {
   }
 
   onAddItem() {
-    realm.write(() => {
-      realm.create('Litter', {
-        sire: this.state.email,
-        dam:   this.state.firstName,
-        breedType: this.state.lastName,
-        pupsAvailable: this.state.pupsAvailable,
+    console.log('Realm fucking defaut: ' + Realm.objects('Litter').length);
+    Realm.write(() => {
+      Realm.create('Litter', {
+        sire: this.state.sire,
+        dam:   this.state.dam,
+        breedType: this.state.breedType,
+        numberOfPuppies: this.state.pupsAvailable,
       });
     });
     this.onPressNext();

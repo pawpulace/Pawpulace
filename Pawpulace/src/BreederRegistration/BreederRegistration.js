@@ -31,7 +31,6 @@ import {Config} from 'react-native-config';
 
 const BreederStyle = require('../../style/BreederStyleSheet');
 const CommonStyles = require('../../style/commonStyles');
-const Realm = require('realm');
 
 import TextField from 'react-native-md-textinput';
 //import Communications from 'react-native-communications';
@@ -39,28 +38,7 @@ import TextField from 'react-native-md-textinput';
 import {CustomButton,CommonNavigator, DropDown, CustomDatePicker} from '../util';
 import BreederProfile from '../BreederProfile/BreederProfile';
 import UploadPicture from '../Common/UploadPupPicComponent';
-
-
-class BreederSchema{}
-BreederSchema.schema = {
-  name: 'BreederSchema',
-  primaryKey: 'emailAddress',
-  properties: {
-    emailAddress: 'string',
-    firstName:   'string',
-    lastName: 'string',
-    phoneNumber: 'string',
-    houseAddress: 'string',
-    breedType: 'string',
-    breedingExperience: 'string',
-    breederSummary: 'string', // optional property
-  },
-};
-
-//Uncomment the next line to delete the schema
-//Realm.clearTestState();
-
-const realm = new Realm({schema: [BreederSchema]});
+import Realm from '../components/realm';
 
 class BreederEndRegistration extends Component {
   constructor(props) {
@@ -69,7 +47,8 @@ class BreederEndRegistration extends Component {
       BreederName: props.BreederName,
       email: props.BreederEmail,
       thankyouText: ' Thank you for registering with us!',
-      bodyText: 'You will receive a confirmation via email about your acceptace in next few days.'
+      bodyText: 'You will receive a confirmation via email about your acceptace in next few days.',
+      routedFrom: 'breeder',
     }
   }
 
@@ -103,12 +82,12 @@ class BreederEndRegistration extends Component {
 }*/
 
  onPressNext() {
-   let breederObject = realm.objectForPrimaryKey(BreederSchema, this.state.email);
+   //let breederObject = Realm.objectForPrimaryKey(BreederSchema, this.state.email);
     this.props.navigator.push({
       component: UploadPicture,
       name : 'Please upload a profile picture',
       passProperty: {
-        routedFrom: 'BreederRegistration',
+        RoutedFrom: this.state.routedFrom,
       }
     })
   }
@@ -160,10 +139,10 @@ class BreederSummary extends Component {
   }
 
   onAddItem() {
-    let breederObject = realm.objectForPrimaryKey(BreederSchema, this.state.email);
-    realm.write(() => {
-      breederObject.breederSummary = this.state.summary;
-    });
+    // let breederObject = Realm.objectForPrimaryKey(BreederSchema, this.state.email);
+    // Realm.write(() => {
+    //   breederObject.breederSummary = this.state.summary;
+    // });
     this.sendEmailAndTextConfirmation();
   }
 
@@ -290,10 +269,10 @@ class BreedType extends Component {
   }
 
   onAddItem() {
-    let breederObject = realm.objectForPrimaryKey(BreederSchema, this.state.email);
-    realm.write(() => {
-      breederObject.breedingExperience = this.state.years;
-    });
+    // let breederObject = Realm.objectForPrimaryKey(BreederSchema, this.state.email);
+    // Realm.write(() => {
+    //   breederObject.breedingExperience = this.state.years;
+    // });
     this.onPressNext();
   }
 
@@ -370,18 +349,18 @@ class BreederInformation extends React.Component {
 
   onAddItem() {
     //if(this.validateEmail(this.state.email) && this.dataValidation) {
-      realm.write(() => {
-        realm.create(BreederSchema, {
-          emailAddress: this.state.email,
-          firstName:   this.state.firstName,
-          lastName: this.state.lastName,
-          phoneNumber: this.state.phoneNumber,
-          houseAddress: this.state.address,
-          breedType:'Lab',
-          breedingExperience: '0',
-          breederSummary: '',
-        },true);
-      })
+      // Realm.write(() => {
+      //   Realm.create(BreederSchema, {
+      //     emailAddress: this.state.email,
+      //     firstName:   this.state.firstName,
+      //     lastName: this.state.lastName,
+      //     phoneNumber: this.state.phoneNumber,
+      //     houseAddress: this.state.address,
+      //     breedType:'Lab',
+      //     breedingExperience: '0',
+      //     breederSummary: '',
+      //   },true);
+      // })
       this.onPressNext();
     //}
   }

@@ -9,6 +9,14 @@
 ****************************************************************************************/
 
 import Realm from 'realm';
-import Litter from './litter';
 
-export default new Realm({ schema: [Litter] });
+export default class Litter extends Realm.Object {}
+Litter.schema = {
+  name: 'Litter',
+  properties: {
+    sire: 'string',
+    dam:   'string',
+    breedType: 'string',
+    numberOfPuppies: 'string',
+  },
+};
