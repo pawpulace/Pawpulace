@@ -28,15 +28,15 @@ class ToggleButton extends Component {
     render() {
         return (
         <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' style={BreederStyle.ImageStyle.bubbleImage} onPress={this.props.onPress}>
-            
-            <Image style={BreederStyle.ImageStyle.bubbleImage} source={this.props.source}>
+
+            <Image source={this.props.source}>
 
                 <View style= {[BreederStyle.ImageStyle.overlay, this.props.selected ? {backgroundColor: 'rgba(80,94,104,0)'} : {} ]}>
                     <Text style={BreederStyle.ImageStyle.overlayText}>{this.props.label}</Text>
                 </View>
-            
+
             </Image>
-        
+
         </TouchableHighlight>
         );
     }
@@ -94,7 +94,7 @@ class SelectButton extends Component {
                                     </Col>
                                     <Col></Col>
                                     <Col>
-                                        <ToggleButton label='PetParent' source={this.petParentImage} onPress={() => { this.updateChoice('PetParent') }} selected={this.state.PetParent} /> 
+                                        <ToggleButton label='PetParent' source={this.petParentImage} onPress={() => { this.updateChoice('PetParent') }} selected={this.state.PetParent} />
                                     </Col>
                               </Row>
                               <Row>

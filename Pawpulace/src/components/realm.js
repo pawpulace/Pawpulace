@@ -51,6 +51,6 @@ BreederSchema.schema = {
   },
 };
 
-//Uncomment the next line to delete the schema
+//Uncomment the next line to delete the schema only for testing
 //Realm.clearTestState();
 export default new Realm({schema: [Litter, Puppy, BreederSchema]});

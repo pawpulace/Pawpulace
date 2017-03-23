@@ -40,6 +40,46 @@ import BreederProfile from '../BreederProfile/BreederProfile';
 import UploadPicture from '../Common/UploadPupPicComponent';
 import Realm from '../components/realm';
 
+class BreederAcceptedScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      BreederName: props.BreederName,
+      email: props.BreederEmail,
+      thankyouText: ' Great News!',
+      bodyText: 'Your application has been approved. Please add the current or upcoming litter information.',
+      routedFrom: 'breeder',
+    }
+  }
+
+ onPressNext() {
+    this.props.navigator.push({
+      component: UploadPicture,
+      name : 'Please upload a profile picture',
+      passProperty: {
+        RoutedFrom: this.state.routedFrom,
+      }
+    })
+  }
+
+  render() {
+  return(
+    <View style={BreederStyle.TextStyle.container}>
+      <View style={{padding: 10}}>
+        <Text style={BreederStyle.TextStyle.titleText} >
+          {this.state.thankyouText}
+        </Text>
+        <Text style={BreederStyle.TextStyle.bodyText}>
+          {this.state.bodyText}
+        </Text>
+         <CustomButton  navigator={this.props.navigator} onPress={() => {this.onPressNext()}} label='Next'/>
+        </View>
+        </View>
+        //Test
+        )
+  };
+}
+
 class BreederEndRegistration extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +87,7 @@ class BreederEndRegistration extends Component {
       BreederName: props.BreederName,
       email: props.BreederEmail,
       thankyouText: ' Thank you for registering with us!',
-      bodyText: 'You will receive a confirmation via email about your acceptace in next few days.',
+      bodyText: 'You will receive a confirmation via email about your acceptance in next few days.',
       routedFrom: 'breeder',
     }
   }
@@ -84,8 +124,7 @@ class BreederEndRegistration extends Component {
  onPressNext() {
    //let breederObject = Realm.objectForPrimaryKey(BreederSchema, this.state.email);
     this.props.navigator.push({
-      component: UploadPicture,
-      name : 'Please upload a profile picture',
+      component: BreederAcceptedScreen,
       passProperty: {
         RoutedFrom: this.state.routedFrom,
       }

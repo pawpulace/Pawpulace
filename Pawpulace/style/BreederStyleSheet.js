@@ -18,7 +18,7 @@ const {
 const pageStyle = {
     container: {
         flex:1,
-        backgroundColor:'#F5FCFF',
+        backgroundColor:'#FFFFFF',
         justifyContent: 'center',
         paddingBottom:30,
         paddingLeft:20,
@@ -31,7 +31,7 @@ const textStyle = {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#FFFFFF',
       },
       welcome: {
         fontSize: 20,
@@ -63,7 +63,13 @@ const textStyle = {
         margin: 10,
         fontWeight: '400',
         marginBottom: 30,
-      }
+      },
+      litterText: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 25,
+        fontWeight: '700',
+      },
 };
 
 const imageStyle = {
@@ -71,7 +77,7 @@ const imageStyle = {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#FFFFFF',
       },
       chooseTypeImage: {
         width: 100,
@@ -79,25 +85,19 @@ const imageStyle = {
     },
 
     bubbleImage: {
-        height: bubbleDimension,
-        borderRadius: bubbleRadius,
-        width: bubbleDimension,
+        height: 80,
+        width: 80,
       },
 
     overlayText: {
-        alignItems: 'center',
-        alignSelf: 'center',
-        color: 'blue',
+        color: 'green',
         fontFamily:'Cochin',
         fontWeight: '600',
         fontSize: 14,
         flex: 0,
-        textAlign: 'center',
         flexDirection:'column',
-        justifyContent:'center',
     },
       overlay: {
-        backgroundColor:'rgba(80,94,104,0.7)',
         height: bubbleDimension,
         width: bubbleDimension,
         alignItems:'center',

@@ -78,7 +78,7 @@ class LitterInformation extends Component {
   }
 
   onAddItem() {
-    console.log('Realm fucking defaut: ' + Realm.objects('Litter').length);
+    console.log('Realm defaut: ' + Realm.objects('Litter').length);
     Realm.write(() => {
       Realm.create('Litter', {
         sire: this.state.sire,
@@ -106,7 +106,7 @@ class LitterInformation extends Component {
                                 /*onChangeText = {(text) => {this.onChange(text)}}
                                 value = {this.state.myNumber} */
                                 />
-              <Text style={BreederStyle.TextStyle.titleText} >
+              <Text style={BreederStyle.TextStyle.litterText} >
                 Please enter the puppy profiles on the next page
               </Text>
             </ScrollView>
@@ -127,7 +127,6 @@ export default class LitterRegistration extends React.Component {
 
   render() {
       return(
-         /* <CommonNavigator component={BreederInformation} name='BreederInformation'/>*/
        <LitterInformation  navigator={this.props.navigator} />
       )
   }

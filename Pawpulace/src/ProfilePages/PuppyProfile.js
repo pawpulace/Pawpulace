@@ -31,12 +31,24 @@ import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-n
 
 const BreederStyle = require('../../style/BreederStyleSheet');
 const CommonStyles = require('../../style/commonStyles');
+const HomePageStyle= require('../../style/HomePageStyle');
 
 import TextField from 'react-native-md-textinput';
 import DatePicker from 'react-native-datepicker';
 import CreatePuppyProfile from '../PuppyRegistration/CreatePuppyProfile';
 
 import {CustomButton,CommonNavigator, DropDown, CustomDatePicker} from '../util';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Col, Row, Grid } from "react-native-easy-grid";
+
+import {
+  Cell,
+  Section,
+  TableView,
+} from 'react-native-tableview-simple';
+
+const puppyPic = require('../../puppy.png');
 
 export default class PuppyProfilePage extends React.Component {
   renderScene(route, navigator) {
@@ -73,33 +85,101 @@ export default class PuppyProfilePage extends React.Component {
 module.exports = PuppyProfilePage;
 
 class PuppyPublicDisplay extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      puppyName: props.PuppyName,
-      image: '',
-      thankyouText: 'Coopers Profile',
-    }
-  }
-
- onPressNext(text) {
-   if(text == 'Add') {
-     this.props.navigator.push ({
-       component: CreatePuppyProfile,
-     })
-   }
-  }
-
   render() {
   return(
-    <View style={BreederStyle.TextStyle.container}>
-      <View style={{padding: 10}}>
-        <Text style={BreederStyle.TextStyle.titleText} >
-        {this.state.puppyName}
-        </Text>
-        <CustomButton  navigator={this.props.navigator} onPress={() => {this.onPressNext()}} label='Next'/>
+    <View style= {CommonStyles.MainStyle.mainContainer}>
+      <View style={styles.profilePage}>
+        <Image
+          source={puppyPic}
+        />
       </View>
+      <ScrollView contentContainerStyle={styles.stage}>
+        <Text style={CommonStyles.ToolBarStyle.toolbarTitle}>Cooper</Text>
+        <Text style={BreederStyle.TextStyle.bodyText}>
+          Cooper is a handsome boy with very sharp features. He ha a calm temparament and likes to
+          play with his brothers and sisters.
+        </Text>
+        <TableView>
+          <Section>
+            <Cell cellStyle="RightDetail" title="DOB" detail="12/30/2016" />
+            <Cell cellStyle="RightDetail" title="Gender" detail="Male" />
+            <Cell cellStyle="RightDetail" title="Breed" detail="Golden Retriever" />
+            <Cell cellStyle="RightDetail" title="Temparament" detail="Calm" />
+            <Cell cellStyle="RightDetail" title="Ready to go home" detail="02/24/2017" />
+          </Section>
+        </TableView>
+      </ScrollView>
     </View>
     )
   };
 }
+
+var FooterView = React.createClass({
+  render: function () {
+    if (!this.props.nowPlaying) {
+      return (
+        <View style={styles.footerSection}>
+          <Grid style={{paddingTop:10, paddingBottom:10, paddingLeft:10, paddingRight:10}}>
+            <Row style={{alignSelf: 'center'}}>
+              <Col></Col>
+              <Col>
+                <TouchableHighlight onPress={this._onPressButton}>
+                  <Image
+                    style={{height: 30, width: 30}}
+                    source={require('../../search.png')}
+                  />
+                </TouchableHighlight>
+              </Col>
+              <Col>
+                <TouchableHighlight onPress={this._onPressButton}>
+                  <Image
+                    style={{height: 30, width: 30}}
+                    source={require('../../message.png')}
+                  />
+                </TouchableHighlight>
+              </Col>
+              <Col style={{alignSelf: 'flex-end'}}>
+                <TouchableHighlight onPress={this._onPressButton}>
+                  <Image
+                    style={{height: 30, width: 30}}
+                    source={require('../../moreOptions.png')}
+                  />
+                </TouchableHighlight>
+              </Col>
+            </Row>
+          </Grid>
+        </View>
+      );
+    }
+  }
+});
+
+var styles = StyleSheet.create({
+  footerSection: {
+    flex: 0,
+    borderTopWidth: 2,
+    borderColor: '#5cc946',
+    height: 50,
+  },
+  profilePage: {
+    flex: 0,
+    borderTopWidth: 2,
+    borderColor: '#5cc946',
+    height: 250,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  description: {
+    flex: 0,
+    borderTopWidth: 2,
+    borderColor: '#5cc946',
+  },
+  stage: {
+    flex: 0,
+    borderTopWidth: 2,
+    borderColor: '#5cc946',
+    backgroundColor: '#EFEFF4',
+    paddingTop: 20,
+    paddingBottom: 20,
+  },
+});

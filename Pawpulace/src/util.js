@@ -10,17 +10,14 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 
-import AwesomeButton from 'react-native-awesome-button';
 const CommonStyle = require('../style/commonStyles');
 const BreederStyle = require('../style/BreederStyleSheet');
 import DatePicker from 'react-native-datepicker';
 import Button from 'react-native-button';
 
-
-
 export class CommonNavigator extends Component {
   constructor(props) {
-      super(props);
+    super(props);
   }
 
   renderScene(route, navigator) {
@@ -60,12 +57,12 @@ var NavigationBarRouteMapper = {
 
   RightButton(route, navigator, index, navState) {
     if (route.onPress) {
-        return (
-            <TouchableHighlight onPress={ () => route.onPress() }>
-                <Text style={ CommonStyle.NavigationBarStyle.rightNavButtonText }> { route.rightText || 'Right Button' }>
-                 </Text>
-            </TouchableHighlight>
-            )
+      return (
+        <TouchableHighlight onPress={ () => route.onPress() }>
+          <Text style={ CommonStyle.NavigationBarStyle.rightNavButtonText }> { route.rightText || 'Right Button' }>
+          </Text>
+        </TouchableHighlight>
+      )
     }
   },
 

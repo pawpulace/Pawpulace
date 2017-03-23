@@ -25,7 +25,7 @@ const pageStyle = {
     chooseRoleBox: {
         width:windowDimension.width-20,
         height:windowDimension.width-20,
-        backgroundColor:'#ef553a',
+        backgroundColor:'#ffffff',
         paddingTop:10,
         paddingBottom:20,
         paddingLeft:20,
@@ -35,7 +35,7 @@ const pageStyle = {
 
     chooseRoleTitleText:{
         fontWeight:'bold',
-        color:'#fff',
+        color:'dodgerblue',
         textAlign:'center',
         fontSize:20,
         marginBottom:10

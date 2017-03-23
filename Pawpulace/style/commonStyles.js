@@ -15,23 +15,23 @@ const {
 } = ReactNative;
 
 const toolBarStyle = {
-    toolbar:{
-        backgroundColor:'#81c04d',
-        paddingTop:30,
-        paddingBottom:10,
-        flexDirection:'row'
-    },
-    toolbarButton:{
-        width: 50,
-        color:'#fff',
-        textAlign:'center'
-    },
-    toolbarTitle:{
-        color:'#fff',
-        textAlign:'center',
-        fontWeight:'bold',
-        flex:1
-    },
+  toolbar:{
+    backgroundColor:'#ffffff',
+    paddingTop:30,
+    paddingBottom:10,
+    flexDirection:'row'
+  },
+  toolbarButton:{
+    width: 50,
+    color:'#fff',
+    textAlign:'center'
+  },
+  toolbarTitle:{
+    color:'#000000',
+    textAlign:'center',
+    fontWeight:'bold',
+    flex:1
+  },
 };
 
 const navigationBarStyle={
@@ -41,8 +41,8 @@ const navigationBarStyle={
         alignItems:'center',
         alignSelf:'center',
         flex:-1,
-        height:50,
-        backgroundColor:'green',
+        height:2,
+        backgroundColor:'#5cc946',
     },
 
     leftNavButtonText: {
@@ -73,6 +73,7 @@ const pageStyle = {
 const mainStyle = {
   mainContainer: {
     flex: 1,
+    height: 50,
   },
 };
 
@@ -110,7 +111,7 @@ const dropDownStyle = {
     borderColor: '#ccc',
     borderWidth: 2,
     width: 300,
-    height: 200
+    height: 100
   },
 
   datePicker: {
