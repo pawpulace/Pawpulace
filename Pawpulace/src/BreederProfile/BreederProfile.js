@@ -17,11 +17,11 @@ import {
 
 
 import SendSMS from 'react-native-sms'
- 
+
 const BreederStyle = require('../../style/BreederStyleSheet');
 import {CustomButton,CommonNavigator} from '../util';
 //some stuff
- 
+
 
 
 class BreederProfile1 extends React.Component {
@@ -74,6 +74,3 @@ export default class BreederProfile extends Component {
 }
 
 module.exports =  BreederProfile;
-
-
-

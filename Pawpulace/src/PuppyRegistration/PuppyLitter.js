@@ -28,6 +28,8 @@ import {CustomButton,CommonNavigator, DropDown, CustomDatePicker} from '../util'
 const BreederStyle = require('../../style/BreederStyleSheet');
 const CommonStyles = require('../../style/commonStyles');
 import PuppyProfilePage from '../ProfilePages/PuppyProfile';
+import BreederProfilePage from '../ProfilePages/BreederProfile';
+import SearchBreederProfile from '../ProfilePages/SearchBreeder';
 
 export default class PuppyLitter extends Component {
   constructor(props) {
