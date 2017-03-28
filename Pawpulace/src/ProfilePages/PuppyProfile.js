@@ -47,6 +47,7 @@ import {
   Section,
   TableView,
 } from 'react-native-tableview-simple';
+import SearchBreederProfile from './SearchBreeder';
 
 const puppyPic = require('../../puppy.png');
 
@@ -68,7 +69,7 @@ export default class PuppyProfilePage extends React.Component {
 
   componentWillMount () {
     this.props.navigator.push({
-      component: PuppyPublicDisplay,
+      component: SearchBreederProfile,
       passProperty: {
         PuppyName: this.state.puppyName,
       }

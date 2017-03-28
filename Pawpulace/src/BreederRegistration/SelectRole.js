@@ -143,7 +143,7 @@ class ButtonRole extends Component {
             if(type == 'PetParent'){
                 this.props.navigator.push({
                     component: PetParentRegistration,
-                    name: 'PetParentRegistration',
+                    name: 'Register as Pet Parent',
                     passProperty: {
                         name: type
                     }
