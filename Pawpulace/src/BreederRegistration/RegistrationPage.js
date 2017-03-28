@@ -38,7 +38,7 @@ class FosterParentRegistration extends Component {
 }
 
 export default class RegistrationPage extends React.Component {
-    
+
      onButtonPress(type){
         switch(type) {
             case 'Breeder':
@@ -49,7 +49,7 @@ export default class RegistrationPage extends React.Component {
             case 'PetParent':
                 this.props.navigator.push({
                     component: PetParentRegistration,
-                    title: 'PetParentRegistration',
+                    title: 'Register as Pet Parent',
                 })
             case 'FosterParent':
                 this.props.navigator.push({

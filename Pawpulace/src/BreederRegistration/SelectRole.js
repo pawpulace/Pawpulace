@@ -21,7 +21,6 @@ import {
 
 import { Col, Row, Grid } from "react-native-easy-grid";
 
-
 const BreederStyle = require('../../style/BreederStyleSheet');
 const CommonStyle = require('../../style/commonStyles');
 const HomePageStyle= require('../../style/HomePageStyle');
@@ -34,22 +33,17 @@ import {CommonNavigator} from '../util'
 
 
 class ToggleButton extends Component {
-
-    render() {
-        return (
-        <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' style={BreederStyle.ImageStyle.bubbleImage} onPress={this.props.onPress}  >
-            
-            <Image style={BreederStyle.ImageStyle.bubbleImage} source={this.props.source}>
-
-                <View style= {[BreederStyle.ImageStyle.overlay, this.props.selected ? {backgroundColor: 'rgba(80,94,104,0)'} : {} ]}>
-                    <Text style={BreederStyle.ImageStyle.overlayText}>{this.props.label}</Text>
-                </View>
-            
-            </Image>
-        
-        </TouchableHighlight>
-        );
-    }
+  render() {
+    return (
+      <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' style={BreederStyle.ImageStyle.bubbleImage} onPress={this.props.onPress}  >
+        <View style= {[BreederStyle.ImageStyle.overlay, this.props.selected ? {backgroundColor: 'rgba(80,94,104,0)'} : {} ]}>
+        <Image style={BreederStyle.ImageStyle.bubbleImage} source={this.props.source}>
+        </Image>
+            <Text style={BreederStyle.ImageStyle.overlayText}>{this.props.label}</Text>
+        </View>
+      </TouchableHighlight>
+    );
+  }
 }
 
 class BreedType extends React.Component {
@@ -86,7 +80,6 @@ class BreederRegistration extends React.Component {
     render() {
         return (
             <BreederRegistrationPage navigator={this.props.navigator}/>
-            /* <CommonNavigator component={BreederRegistration1} name='BreederRegistration1'/>*/
         );
     }
 }
@@ -117,15 +110,10 @@ class ButtonRole extends Component {
             FosterParent: false,
         };
 
-        this.breederImage = require('../../assets/face.png');
+        this.breederImage = require('../../avatar.png');
         this.petParentImage =  require('../../assets/face.png');
         this.fosterParentImage = require('../../assets/face.png');
     }
-
-     /*static propTypes = {
-        name: PropTypes.string.isRequired,
-        navigator: PropTypes.object.isRequired,
-    }*/
 
     updateChoice(type, property) {
         let newState = {...this.state};
@@ -143,7 +131,7 @@ class ButtonRole extends Component {
     }
 
     onButtonPress(type){
-            if(type == 'Breeder') { 
+            if(type == 'Breeder') {
                 this.props.navigator.push({
                     component: BreederRegistration,
                     name: 'BreederRegistration',
@@ -155,7 +143,7 @@ class ButtonRole extends Component {
             if(type == 'PetParent'){
                 this.props.navigator.push({
                     component: PetParentRegistration,
-                    name: 'PetParentRegistration',
+                    name: 'Register as Pet Parent',
                     passProperty: {
                         name: type
                     }
@@ -173,52 +161,35 @@ class ButtonRole extends Component {
         }
 
     render() {
-
-        return (
-            <Grid style={{paddingTop:20, paddingBottom:20, paddingLeft:20, paddingRight:20}}>
-                  <Row>
-                        <Col>
-                             <ToggleButton label='Breeder' source= {this.breederImage} onPress={() => { this.updateChoice('Breeder') }} selected={this.state.Breeder} />
-                        </Col>
-                        <Col></Col>
-                        <Col>
-                            <ToggleButton label='PetParent' source={this.petParentImage} onPress={() => { this.updateChoice('PetParent') }} selected={this.state.PetParent} /> 
-                        </Col>
-                  </Row>
-                  <Row>
-                        <Col></Col>
-                        <Col>
-                            <ToggleButton label='FosterParent' source={this.fosterParentImage} onPress={() => { this.updateChoice('FosterParent') }} selected={this.state.FosterParent} />
-                        </Col>
-                        <Col></Col>
-                  </Row>
-            </Grid>
-
-            );
+      return (
+        <Grid style={{paddingTop:20, paddingBottom:20, paddingLeft:20, paddingRight:20}}>
+          <Row>
+            <Col>
+              <ToggleButton label='Breeder' source= {this.breederImage} onPress={() => { this.updateChoice('Breeder') }} selected={this.state.Breeder} />
+            </Col>
+            <Col></Col>
+            <Col>
+                <ToggleButton label='PetParent' source={this.breederImage} onPress={() => { this.updateChoice('PetParent') }} selected={this.state.PetParent} />
+            </Col>
+          </Row>
+        </Grid>
+      );
     }
 }
 
 class HomeView extends Component {
-   /*static propTypes = {
-      navigator: PropTypes.object.isRequired,
-      name: PropTypes.string.isRequired,
-    }*/
+  render() {
+    return (
+      <View style={HomePageStyle.PageStyle.container}>
 
-    render() {
-        return (
-            <View style={HomePageStyle.PageStyle.container}>
-                        <View style={HomePageStyle.PageStyle.chooseRoleBox}>
-                            <View style={{flex:1 , flexDirection:'column'}}>
-                                
-                                <Text style={HomePageStyle.PageStyle.chooseRoleTitleText}>
-                                      Are you a:
-                                </Text>
-                                <ButtonRole navigator={this.props.navigator} name={this.props.name} />
-                            </View>
-                        </View>
+        <View style={HomePageStyle.PageStyle.chooseRoleBox}>
+            <View style={{flex:1 , flexDirection:'column'}}>
+                <ButtonRole navigator={this.props.navigator} name={this.props.name} />
             </View>
-        );
-    }
+        </View>
+      </View>
+    );
+  }
 }
 
 export default class SelectRole extends Component {
@@ -233,7 +204,7 @@ export default class SelectRole extends Component {
 
     render() {
         return (
-            <CommonNavigator component={HomeView} name='home'/>
+            <CommonNavigator component={HomeView} name='Please select a role'></CommonNavigator>
         );
     }
 }

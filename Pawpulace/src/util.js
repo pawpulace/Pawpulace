@@ -3,70 +3,66 @@ import {
     Navigator,
     Text,
     View,
-    Button,
     Image,
     StyleSheet,
-     ScrollView,
+    ScrollView,
     TouchableHighlight,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
 } from 'react-native';
 
-import AwesomeButton from 'react-native-awesome-button';
 const CommonStyle = require('../style/commonStyles');
 const BreederStyle = require('../style/BreederStyleSheet');
-
-
+import DatePicker from 'react-native-datepicker';
+import Button from 'react-native-button';
 
 export class CommonNavigator extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-    constructor(props) {
-        super(props);
-    }
+  renderScene(route, navigator) {
+    return <route.component navigator={navigator} {...route.passProperty} />
+  }
 
-    renderScene(route, navigator) {
-        return <route.component navigator={navigator} {...route.passProperty} />
-    }
+  configureScene(route, routeStack) {
+    return Navigator.SceneConfigs.PushFromRight
+  }
 
-    configureScene(route, routeStack) {
-            return Navigator.SceneConfigs.PushFromRight
-    }
-
-    render() {
-        return (
-            <Navigator
-                    configureScene={ this.configureScene }
-                    style={CommonStyle.MainStyle.mainContainer}
-                    renderScene = {this.renderScene}
-                    initialRoute={{ component: this.props.component,  name:this.props.name}}
-                    navigationBar = {
-                        <Navigator.NavigationBar style = {CommonStyle.NavigationBarStyle.container}
-                            routeMapper = {NavigationBarRouteMapper} {...this.props}/>
-                    } >
-            </Navigator>
-        );
-    }
+  render() {
+    return (
+      <Navigator
+        configureScene={ this.configureScene }
+        style={CommonStyle.MainStyle.mainContainer}
+        renderScene = {this.renderScene}
+        initialRoute={{ component: this.props.component,  name:this.props.name}}
+        navigationBar = {
+            <Navigator.NavigationBar style = {CommonStyle.NavigationBarStyle.container}
+                routeMapper = {NavigationBarRouteMapper} {...this.props}/>
+        }
+      />
+    );
+  }
 }
 
 var NavigationBarRouteMapper = {
-    
-    LeftButton(route, navigator, index, navState) {
-            if(index > 0) {
-                  return (
-                    <TouchableHighlight underlayColor="transparent" onPress={() => { if (index > 0) { navigator.pop() } }}>
-                      <Text style={ CommonStyle.NavigationBarStyle.leftNavButtonText }> Back </Text>
-                    </TouchableHighlight>
-            )} 
-            else { return null }
-    },
+  LeftButton(route, navigator, index, navState) {
+    if(index > 0) {
+      return (
+        <TouchableHighlight underlayColor="transparent" onPress={() => { if (index > 0) { navigator.pop() } }}>
+          <Text style={ CommonStyle.NavigationBarStyle.leftNavButtonText }> Back </Text>
+        </TouchableHighlight>
+    )}
+    else { return null }
+  },
 
   RightButton(route, navigator, index, navState) {
     if (route.onPress) {
-        return ( 
-            <TouchableHighlight onPress={ () => route.onPress() }>
-                <Text style={ CommonStyle.NavigationBarStyle.rightNavButtonText }> { route.rightText || 'Right Button' }>
-                 </Text>
-            </TouchableHighlight> 
-            )
+      return (
+        <TouchableHighlight onPress={ () => route.onPress() }>
+          <Text style={ CommonStyle.NavigationBarStyle.rightNavButtonText }> { route.rightText || 'Right Button' }>
+          </Text>
+        </TouchableHighlight>
+      )
     }
   },
 
@@ -75,66 +71,51 @@ var NavigationBarRouteMapper = {
   }
 }
 
-
-
-
-
-
-
-
-
-export class CustomButton extends React.Component {
-    render() {
-        return (
-            <Button
-                style={{fontSize: 20, color: 'green', borderRadius:4}}
-                onPress={this.props.onPress}
-                title={this.props.label}
-                 />
-
-            /*<View style={styles.container}>
-                    <AwesomeButton states={{
-                                    default: {
-                                      text: this.props.label,
-                                      onPress: this.props.onPress,
-                                      backgroundColor: '#1155DD'
-                                    }
-                                   }} />
-           </View>*/
-        );
-    }
+export class CustomDatePicker extends Component {
+  render() {
+    return (
+      <DatePicker style={CommonStyle.DropDownStyle.datePicker}
+        mode="date"
+        placeholder="Date of Birth "
+        format="MM-DD-YYYY"
+        minDate="05-01-2016"
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        iconSource={require('../date_icon.png')}
+      />
+    )
+  }
 }
 
+export class CustomButton extends React.Component {
+  render() {
+    return (
+        <View style={{alignItems: 'center'}}>
+          <Button
+            style={CommonStyle.ButtonStyle.container}
+            onPress={this.props.onPress}
+          >
+            {this.props.label}
+          </Button>
+        </View>
+    );
+  }
+}
 
-
-/*
-const MenuOptions = React.createClass({
-    displayName: 'MenuOptions',
-
-    constructor(props) {
-      super(props);
-      this.state = {
-
-      }
-    }
-    
-    onSelect(value) {
-      this.props.onSelect(value);
-    },
-
-    render() {
-      return (
-        <TouchableWithoutFeedback style={[styles.options, this.props.style]}>
-          <View>
-            { React.Children.map(this.props.children, (x) => (
-              React.cloneElement(x, {onPress: this.onSelect})
-            )) }
-          </View>
-        </TouchableWithoutFeedback>
-      );
-    }
-  });*/
-
+export class CustomLargeButton extends React.Component {
+  render() {
+    return (
+        <View style={{alignItems: 'center'}}>
+          <Button
+            style={CommonStyle.ButtonStyle.largeContainer}
+            onPress={this.props.onPress}
+          >
+            {this.props.label}
+          </Button>
+        </View>
+    );
+  }
+}
 
 import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu';
 export class DropDown extends React.Component {
@@ -149,37 +130,36 @@ export class DropDown extends React.Component {
     }
 
   render(){
- 
+
         return(
-            
-                <MenuContext style={{ flex: 1 }} ref="MenuContext">
-                 <View style={CommonStyle.DropDownStyle.content}>
-                    <Menu style={CommonStyle.DropDownStyle.dropdown}  onSelect= {(value) => this.setState({ dropdownSelectionText: value })}>
-                        <MenuTrigger>
-                          <Text>{this.state.dropdownSelectionText}</Text>
-                        </MenuTrigger>
-                        <MenuOptions optionsContainerStyle={CommonStyle.DropDownStyle.dropdownOptions}
-                                             renderOptionsContainer={(options) => <ScrollView><Text>Choose...</Text>{options}</ScrollView>}>
-                             {
-                                    
-                                this.props.dropdownlists.map((item, index) => {
-                                  return (
-                                            <MenuOption key={index} value={item}> 
-                                                <Text>{item}</Text>
-                                            </MenuOption>
-                                  )
-                                  })
-                              }
-                       </MenuOptions>
-                    </Menu>
-                  </View>
-                </MenuContext>
+          <MenuContext ref="MenuContext">
+           <View style={CommonStyle.DropDownStyle.content}>
+              <Menu style={CommonStyle.DropDownStyle.dropdown}  onSelect= {(value) => this.setState({ dropdownSelectionText: value })}>
+                  <MenuTrigger>
+                    <Text>{this.state.dropdownSelectionText}</Text>
+                  </MenuTrigger>
+                  <MenuOptions optionsContainerStyle={CommonStyle.DropDownStyle.dropdownOptions}
+                                       renderOptionsContainer={(options) => <ScrollView><Text>Choose...</Text>{options}</ScrollView>}>
+                       {
+
+                          this.props.dropdownlists.map((item, index) => {
+                            return (
+                                      <MenuOption key={index} value={item}>
+                                          <Text>{item}</Text>
+                                      </MenuOption>
+                            )
+                            })
+                        }
+                 </MenuOptions>
+              </Menu>
+            </View>
+          </MenuContext>
         )
     }
 }
 
 
-
+//Styles Start
 const styles = StyleSheet.create({
 
   content: {
@@ -199,7 +179,7 @@ const styles = StyleSheet.create({
 
      paddingTop:10,
      paddingBottom:10,
-    flexDirection:'row'   
+    flexDirection:'row'
   },
   loginButtonBackground: {
     flex: 1,
@@ -257,20 +237,6 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 2,
     width: 300,
-    height: 500
+    height: 200
   }
 })
-
-
-/*export function NavigationBarRouteMapper;*/
-
-/*
-export function HelloChandu() {
-}
-
-export function HelloTester() {
-}
-
-import { HelloChandu } from './helpers'
-*/
-

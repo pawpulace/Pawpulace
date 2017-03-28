@@ -63,7 +63,7 @@ export default class VerticalSelect extends Component {
   }
   render() {
     return (<ScrollView style={{
-      backgroundColor: '#eeeeee'
+      backgroundColor: '#ffffff'
     }}>
       {this.renderCheckList()}
     </ScrollView>);
@@ -140,7 +140,7 @@ export default class VerticalSelect extends Component {
       <View style={{flex: 1}}>
         <View style={{marginTop: 0, backgroundColor: 'white'}}>
           <View style={{
-            backgroundColor: '#eeeeee',
+            backgroundColor: '#ffffff',
             paddingTop: 5,
             paddingBottom: 5,
           }}>
@@ -149,7 +149,8 @@ export default class VerticalSelect extends Component {
               paddingLeft: 20,
               marginBottom: 5,
               marginTop: 5,
-              fontSize: 12,
+              fontSize: 14,
+              fontWeight: 'bold',
             }}>{this.props.verticalSelection}</Text>
             <RadioButtons
               options={ this.props.verticalSelectionText }
@@ -159,9 +160,6 @@ export default class VerticalSelect extends Component {
               renderContainer={ renderContainer }
             />
           </View>
-          <Text style={{
-            margin: 10,
-          }}>Selected accent: {this.state.checkListOption || 'none'}</Text>
         </View>
       </View>);
 
